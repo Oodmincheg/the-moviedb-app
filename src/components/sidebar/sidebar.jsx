@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './sidebar.css';
-import './../../assets/font-awesome-4.7.0/css/font-awesome.min.css';
+import {sidebarNavigation} from '../../data'
+import {connect} from 'react-redux';
 // import { Link } from 'react-router-dom';
 
-export const SidebarList = ({ items, isOpened }) => {
+const Sidebar = ({ items, isOpened }) => {
     return (
         <div className='mdb-sidebar'>
             <div
@@ -26,7 +27,6 @@ export const SidebarList = ({ items, isOpened }) => {
                     </span>
                 <div className='mdb-sidebar__navigation'>
                     {items.map((item, index) =>
-
                         <a
                             href='#'
                             className='mdb-sidebar__links'
@@ -41,3 +41,11 @@ export const SidebarList = ({ items, isOpened }) => {
         </div>
     );
 };
+
+const mapStateToProps = (state) => {
+    return {
+        items: sidebarNavigation
+    }
+}
+
+export const AppSidebar = connect(mapStateToProps)(Sidebar);
