@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovies } from './store/actions';
-import { baseUrl } from './/store/constants';
+import { baseUrl } from './constants';
 import { Poster } from './components/poster';
 import './App.css';
 
