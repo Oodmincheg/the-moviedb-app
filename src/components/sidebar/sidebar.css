@@ -1,0 +1,45 @@
+.mdb-sidebar__wrapper {
+    background: #353743;
+    width: 300px;
+    height: 100vh;
+    transition: 0.5s ease-out;
+    position: fixed;
+}
+
+.mdb-sidebar__toggle { 
+    cursor: pointer;
+}
+
+.mdb-sidebar__icon-bar {
+    display: block;
+    margin:5px 0 0 20px;;
+    width: 30px;
+    height: 3px;
+    background: white;
+}
+
+.mdb-sidebar__links {
+    display: block;
+    height: 30px;
+    color: white;
+    margin: 30px 0 0 20px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.mdb-sidebar__navigation {
+    margin: 60px 0 0 0;
+}
+
+.mdb-sidebar__icon {
+    margin-right: 50px;
+}
+
+.mdb-sidebar__logo {
+    /* position: absolute; */
+    left: 70px;
+    top: 0;
+    color: rgba(255, 255, 255, 0.664);
+    font-size: 22px;
+    text-align: center;
+}
