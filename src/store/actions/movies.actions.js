@@ -3,14 +3,14 @@ import {
     FETCH_MOVIES_SUCCESS,
     FETCH_MOVIES_FAILURE
 } from '../../constants';
-import { getMovies } from '../../services';
-import { url } from '../../constants';
+import { getData } from '../../services';
+import { popularMovies } from '../../constants';
 
 export const fetchMovies = () => async dispatch => {
     dispatch({ type: FETCH_MOVIES_START })
 
     try {
-        const movies = await getMovies(url);
+        const movies = await getData(popularMovies);
         dispatch({
             type: FETCH_MOVIES_SUCCESS,
             movies

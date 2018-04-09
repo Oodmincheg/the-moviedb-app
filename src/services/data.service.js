@@ -1,4 +1,4 @@
-export const getMovies = (url) => new Promise((resolve, reject) => {
+export const getData = (url) => new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
     request.open('GET', url);
     request.onload = () =>

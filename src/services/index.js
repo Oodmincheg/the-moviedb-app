@@ -1,1 +1,1 @@
-export * from './movies.service';
+export * from './data.service';

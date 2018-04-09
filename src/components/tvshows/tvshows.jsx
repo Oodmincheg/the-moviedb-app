@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMovies } from '../../store/actions';
+import { fetchTvShows } from '../../store/actions';
 import { baseUrl } from '../../constants';
 import { Poster } from '../poster';
 
-class Movies extends Component {
+class TvShows extends Component {
   componentDidMount() {
-    this.props.fetchMovies();
+    this.props.fetchTvShows();
   }
   render() {
-    const { movies } = this.props;
+    const { tvShows } = this.props;
     return (
       <div className="App">
-        {movies.map(movie =>
+        {tvShows.map(tvShow =>
           <Poster
             className='mdb-movies'
-            src={baseUrl + movie.poster_path}
-            key={movie.id}
-            alt={movie.title}
-            title={movie.original_title}
+            src={baseUrl + tvShow.poster_path}
+            key={tvShow.id}
+            alt={tvShow.name}
+            title={tvShow.original_name}
           />
         )}
       </div>
@@ -29,17 +29,17 @@ class Movies extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.moviesReducer.movies
+    tvShows: state.tvShowsReducer.tvShows
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchMovies: bindActionCreators(fetchMovies, dispatch)
+    fetchTvShows: bindActionCreators(fetchTvShows, dispatch)
   }
 }
 
-export const MovieList = connect(
+export const TvShowsList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Movies);
+)(TvShows);

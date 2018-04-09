@@ -9,7 +9,13 @@ export function configureStore(initialState) {
         rootReducer,
         initialState,
         composeWithDevTools(applyMiddleware(logger, thunk)
-        )
+        ),
+        (localStorage['redux-store']) ?
+            JSON.parse(localStorage['redux-store']) :
+            {})
+    store.subscribe(() => {
+        localStorage['redux-store'] = JSON.stringify(store.getState())
+    }
     );
     return store;
 }
