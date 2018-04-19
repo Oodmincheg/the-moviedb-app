@@ -1,16 +1,20 @@
 import {
     FETCH_TVSHOWS_START,
     FETCH_TVSHOWS_SUCCESS,
-    FETCH_TVSHOWS_FAILURE
+    FETCH_TVSHOWS_FAILURE,
+    ADD_CUSTOM_TVSHOW
 } from '../../constants';
-import { getData } from '../../services';
+import { getData, TvShowEntity } from '../../services';
 import { popularTvShows } from '../../constants';
 
 export const fetchTvShows = () => async dispatch => {
     dispatch({ type: FETCH_TVSHOWS_START })
 
     try {
-        const tvShows = await getData(popularTvShows);
+        let tvShows = await getData(popularTvShows);
+        tvShows = tvShows.map((item => {
+            return new TvShowEntity(item);
+        }));
         dispatch({
             type: FETCH_TVSHOWS_SUCCESS,
             tvShows
@@ -21,5 +25,12 @@ export const fetchTvShows = () => async dispatch => {
             payload: err,
             error: true
         })
+    }
+}
+
+export function addCustomMTvshow() {
+    return {
+        type: ADD_CUSTOM_TVSHOW,
+        payload
     }
 }

@@ -2,40 +2,73 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovies } from '../../store/actions';
-import { baseUrl } from '../../constants';
 import { Poster } from '../poster';
+import { Search } from '../search';
+import { AddMovieForm } from '../add-movie';
+import { Preloader } from '../preloader';
+import './movies.css';
 
 class Movies extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ''
+    };
+  }
+
   componentDidMount() {
     this.props.fetchMovies();
   }
+
+  handleSearch(event) {
+    this.setState({ search: event.target.value.substr(0, 20) });
+  }
+
   render() {
-    const { movies } = this.props;
-    return (
-      <div className="App">
-        {movies.map(movie =>
-          <Poster
-            className='mdb-movies'
-            src={baseUrl + movie.poster_path}
-            key={movie.id}
-            alt={movie.title}
-            title={movie.original_title}
-          />
-        )}
-      </div>
-    );
+    const { movies, isLoaded } = this.props;
+    let filteredMovies = movies.filter((movie) => {
+      return movie.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    });
+    if (!isLoaded) {
+      return <Preloader className='mdb-spinner' />
+    } else {
+      return (
+        <div className='mdb-container-movies'>
+          <div
+            className='mdb-container-movies__inner mdb-container-movies__inner-search'
+            onChange={this.handleSearch.bind(this)}
+          >
+            <Search />
+          </div>
+          <div >
+            <AddMovieForm />
+          </div>
+          <div className='mdb-container-movies__inner' >
+            {filteredMovies.map(movie =>
+              <Poster
+                className='mdb-container-movies__poster'
+                src={movie.poster}
+                key={movie.id}
+                alt={movie.title}
+              />
+            )}
+          </div>
+        </div>
+      );
+    }
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.moviesReducer.movies
+    movies: state.moviesReducer.movies,
+    isLoaded: state.moviesReducer.isLoaded
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchMovies: bindActionCreators(fetchMovies, dispatch)
+    fetchMovies: bindActionCreators(fetchMovies, dispatch),
   }
 }
 

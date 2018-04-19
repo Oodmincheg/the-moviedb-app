@@ -1,0 +1,12 @@
+.mdb-container-movies__inner {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 360px;
+    margin-top: 20px;
+    background-color: #262126;
+    max-width: 100%;
+}
+
+.mdb-container-movies__poster {
+    margin: 10px 0 0 15px;
+}

@@ -1,0 +1,31 @@
+.mdb-container-form__label {
+    display: block;
+}
+
+.mdb-container-form__wrapper {
+    position: relative;
+    display: none;
+    margin-left: 360px;
+    padding-left: 30px;
+    color: gray;
+}
+
+.mdb-container-form__wrapper--open {
+    display: inherit;
+}
+
+.mdb-container-form__line {
+    color: gray;
+    width: 300px;
+    margin: 10px 0 10px 0;
+}
+
+.mdb-container-form__checkbox-adult {
+    margin: 15px 0 0 5px;
+}
+
+@media screen and (min-width: 1920px) {
+    .mdb-container-form__wrapper {
+        width: 75%;
+    }
+}

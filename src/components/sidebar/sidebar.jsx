@@ -1,10 +1,9 @@
 import React from 'react';
 import './sidebar.css';
 import { sidebarNavigation } from '../../data'
-import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const Sidebar = ({ items, isOpened }) => {
+export const Sidebar = ({ items, isOpened }) => {
     return (
         <div className='mdb-sidebar'>
             <div
@@ -26,13 +25,12 @@ const Sidebar = ({ items, isOpened }) => {
                     </i> Logo
                     </span>
                 <div className='mdb-sidebar__navigation'>
-                    {items.map((item, index) =>
+                    {sidebarNavigation.map((item, index) =>
                         <NavLink
                             href='#'
                             className='mdb-sidebar__links'
                             key={index}
                             to={item.to}
-
                         >
                             <i className={item.icon} />
                             {item.label}
@@ -43,11 +41,3 @@ const Sidebar = ({ items, isOpened }) => {
         </div>
     );
 };
-
-const mapStateToProps = (state) => {
-    return {
-        items: sidebarNavigation
-    }
-}
-
-export const AppSidebar = connect(mapStateToProps)(Sidebar);

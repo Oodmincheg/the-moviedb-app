@@ -1,0 +1,11 @@
+.mdb-container-form__textarea {
+    display: inline-block;
+    width: 300px;
+    height: 150px;
+    border-radius: 5px;
+    resize: none;
+}
+
+.mdb-container-form__overview-wrapper {
+    width: 350px;
+}

@@ -1,0 +1,10 @@
+.mdb-top-navigation__links {
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+}
+
+.mdb-top-navigation__item {
+    margin: 0 0 0 20px;
+    color: #037DBB;
+}

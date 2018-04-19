@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Bradley;
+}
+
+.mdb-container__main {
+    display: flex;
+    flex-flow: row wrap;
+    background-color: #262126;
+    min-height: 100vh;
+    width: 100%;
+}
+
