@@ -14,10 +14,3 @@
     width: 120px;
     background-color: red;
 }
-
-.mdb-container-form__buttons-wrapper {
-    position: absolute;
-    width: 300px;
-    bottom: 10px;
-    right: 100px;
-}

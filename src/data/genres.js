@@ -1,42 +1,78 @@
-export const genres = [
+export const genresMock = [
     {
-        type: 'checkbox',
-        label: 'Action'
+        "id": 28,
+        "name": "Action"
     },
     {
-        type: 'checkbox',
-        label: 'Adventure'
+        "id": 12,
+        "name": "Adventure"
     },
     {
-        type: 'checkbox',
-        label: 'Thriller'
+        "id": 16,
+        "name": "Animation"
     },
     {
-        type: 'checkbox',
-        label: 'Comedy'
+        "id": 35,
+        "name": "Comedy"
     },
     {
-        type: 'checkbox',
-        label: 'Fantasy'
+        "id": 80,
+        "name": "Crime"
     },
     {
-        type: 'checkbox',
-        label: 'Drama',
+        "id": 99,
+        "name": "Documentary"
     },
     {
-        type: 'checkbox',
-        label: 'Horor'
+        "id": 18,
+        "name": "Drama"
     },
     {
-        type: 'checkbox',
-        label: 'Criminal'
+        "id": 10751,
+        "name": "Family"
     },
     {
-        type: 'checkbox',
-        label: 'War'
+        "id": 14,
+        "name": "Fantasy"
     },
     {
-        type: 'checkbox',
-        label: 'Documentary'
+        "id": 36,
+        "name": "History"
+    },
+    {
+        "id": 27,
+        "name": "Horror"
+    },
+    {
+        "id": 10402,
+        "name": "Music"
+    },
+    {
+        "id": 9648,
+        "name": "Mystery"
+    },
+    {
+        "id": 10749,
+        "name": "Romance"
+    },
+    {
+        "id": 878,
+        "name": "Science Fiction"
+    },
+    {
+        "id": 10770,
+        "name": "TV Movie"
+    },
+    {
+        "id": 53,
+        "name": "Thriller"
+    },
+    {
+        "id": 10752,
+        "name": "War"
+    },
+    {
+        "id": 37,
+        "name": "Western"
     }
 ]

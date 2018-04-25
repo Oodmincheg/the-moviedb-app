@@ -6,6 +6,7 @@ import { Poster } from '../poster';
 import { Search } from '../search';
 import { AddMovieForm } from '../add-movie';
 import { Preloader } from '../preloader';
+import { addCustomMovie } from '../../store/actions';
 import './movies.css';
 
 class Movies extends Component {
@@ -41,7 +42,7 @@ class Movies extends Component {
             <Search />
           </div>
           <div >
-            <AddMovieForm />
+            <AddMovieForm addMovie={this.props.addCustomMovie} />
           </div>
           <div className='mdb-container-movies__inner' >
             {filteredMovies.map(movie =>
@@ -69,6 +70,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchMovies: bindActionCreators(fetchMovies, dispatch),
+    addCustomMovie: (item) => {
+      dispatch(addCustomMovie(item));
+    }
   }
 }
 

@@ -13,6 +13,7 @@ export const Input = ({
             <input
                 type={type}
                 className={className}
+                required
             />
         </div>
     );

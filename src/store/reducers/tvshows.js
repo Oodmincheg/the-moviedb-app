@@ -8,12 +8,12 @@ const initialState = {
     isLoaded: false
 }
 
-export function tvShowsReducer(state = initialState, { type, tvShows, payload }) {
+export function tvShowsReducer(state = initialState, { type, payload }) {
     switch (type) {
         case FETCH_TVSHOWS_SUCCESS:
             return {
                 ...state,
-                tvShows: tvShows,
+                tvShows: payload,
                 isLoaded: true
             }
         case ADD_CUSTOM_TVSHOW:

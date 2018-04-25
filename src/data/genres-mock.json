@@ -1,0 +1,55 @@
+{
+    "genres": [
+        {
+            "type": "checkbox",
+            "label": "Action",
+            "id": 28
+        },
+        {
+            "type": "checkbox",
+            "label": "Adventure",
+            "id": 12
+
+        },
+        {
+            "type": "checkbox",
+            "label": "Thriller",
+            "id": 53
+        },
+        {
+            "type": "checkbox",
+            "label": "Comedy",
+            "id": 35
+        },
+        {
+            "type": "checkbox",
+            "label": "Fantasy",
+            "id": 14
+        },
+        {
+            "type": "checkbox",
+            "label": "Drama",
+            "id": 18
+        },
+        {
+            "type": "checkbox",
+            "label": "Horor",
+            "id": 27
+        },
+        {
+            "type": "checkbox",
+            "label": "Criminal",
+            "id": 80
+        },
+        {
+            "type": "checkbox",
+            "label": "War",
+            "id": 10752
+        },
+        {
+            "type": "checkbox",
+            "label": "Documentary",
+            "id": 99
+        }
+    ]
+}
