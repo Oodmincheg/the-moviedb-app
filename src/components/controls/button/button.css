@@ -2,12 +2,13 @@
     height: 35px;
     margin: 15px 0 0 15px;
     border: 1.5px solid gray;
+    color: rgb(58, 56, 56);
     cursor: pointer;
 }
 
 .mdb-container-form__button--add {
     width: 150px;
-    background-color: green;
+    background-color: #3F995A;
 }
 
 .mdb-container-form__button--cancel {

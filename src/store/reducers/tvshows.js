@@ -19,7 +19,7 @@ export function tvShowsReducer(state = initialState, { type, payload }) {
         case ADD_CUSTOM_TVSHOW:
             return {
                 ...state,
-                tvShows: [payload, ...state.tvShows]
+                tvShows: [...state.tvShows, payload]
             }
         default:
             return state;

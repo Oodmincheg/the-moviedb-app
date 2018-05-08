@@ -2,8 +2,6 @@ import {
     FETCH_TVSHOWS_START,
     ADD_CUSTOM_TVSHOW
 } from '../../constants';
-import { getData, TvShowEntity } from '../../services';
-import { popularTvShows } from '../../constants';
 
 export function fetchTvShows() {
     return {
@@ -11,7 +9,7 @@ export function fetchTvShows() {
     }
 }
 
-export function addCustomMTvshow(payload) {
+export function addCustomTvshow(payload) {
     return {
         type: ADD_CUSTOM_TVSHOW,
         payload

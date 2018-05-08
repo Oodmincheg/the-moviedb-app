@@ -2,5 +2,9 @@
     width: 300px;
     height: 25px;
     border-radius: 5px;
-    margin: 0 0 20px 0;
+    /* margin: 0 0 15px 0; */
+}
+
+.mdb-container-form__title-wrapper label {
+    display: block;
 }

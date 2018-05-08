@@ -1,3 +1,8 @@
 .mdb-movies__poster {
     margin: 10px 0 0 10px;
 }
+
+.mdb-container-movies__poster{
+    width: 185px;
+    height: 278px;
+}

@@ -33,7 +33,8 @@
 } */
 
 .mdb-container-form__genres {
-    width: 300px;
+    font-size: 15px;
+    width: 400px;
     border: 2px solid gray;
     border-radius: 5px;
 }
@@ -54,9 +55,9 @@
 }
 
 .mdb-container-form__drop-files {
-    height: 40px;
+    height: 60px;
     width: 100%;
-    border: 2px dashed gray;
+    border: 2px dashed black;
     background-color: #353336;
     border-radius: 5px;
     /* display: flex;
@@ -67,13 +68,26 @@
 .mdb-container-form__droped {
     height: 120px;
     width: 100%;
-    background-color: green;
-    overflow-x: scroll;
+    background: transparent;
 }
 
 .mdb-container-form__dropped-image {
-    height: 120px;
-    width: 60px;
+   width: 50px;
+   height: 100px;
+}
+
+.mdb-container-form__droped--scroll {
+    overflow-x: scroll;
+}
+
+.mdb-container-form__validation-fail {
+    display: block;
+    margin: 0 0 15px 0;
+    color: #ff0000;
+}
+
+.mdb-container-form__validation-success {
+    display: none;
 }
 
 @media screen and (min-width: 1920px) {
