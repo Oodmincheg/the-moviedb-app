@@ -6,12 +6,12 @@ import {
 export function fetchMovies() {
     return {
         type: FETCH_MOVIES_START
-    }
+    };
 }
 
 export function addCustomMovie(payload) {
     return {
         type: ADD_CUSTOM_MOVIE,
         payload
-    }
+    };
 }

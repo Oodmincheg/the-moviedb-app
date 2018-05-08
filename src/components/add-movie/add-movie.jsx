@@ -4,22 +4,26 @@ import { Input } from '../controls/input';
 import { Button } from '../controls/button';
 import { GenresList } from '../genres';
 import { Textarea } from '../controls/textarea';
-import { closeForm, addCustomMovie } from '../../store/actions';
+import { closeForm } from '../../store/actions';
 import { getItemFromLocalStorage } from '../../services';
 import './add-movie.css';
 
 class AddMovie extends Component {
     constructor(props) {
         super(props)
-        this.submit = this.submit.bind(this);
         this.defaultPoster = '../../assets/default_poster.jpg';
+        this.loadInView = this.loadInView.bind(this);
+        this.checkValidation = this.checkValidation.bind(this);
+        this.uploadPoster = this.uploadPoster.bind(this);
         this.state = {
-            titile: '',
+            title: '',
             overview: '',
             genre_ids: [],
             id: Math.round(Math.random() * 100000),
             adult: false,
-            poster: this.defaultPoster
+            poster: this.defaultPoster,
+            countOfPosters: 0,
+            genresFromLS: getItemFromLocalStorage('genres') || []
         };
     }
 
@@ -39,38 +43,80 @@ class AddMovie extends Component {
     }
 
     checkValidation() {
-        if (this.state.titile && this.state.genre_ids !== 0) {
+        if (this.state.title && this.state.genre_ids && this.state.countOfPosters !== 0) {
             return false;
         }
         return true;
     }
 
-    submit(e) {
+    onTitleChange(e) {
+        this.setState({ title: e.target.value });
+    }
+
+    onOverviewChange(e) {
+        this.setState({ overview: e.target.value });
+    }
+
+    onAdultChage(e) {
+        this.setState({ adult: e.target.checked })
+    }
+
+    uploadPoster() {
+        this.setState((prevState) => ({
+            countOfPosters: prevState.countOfPosters += 1
+        }));
+    }
+
+    handleGenreChange(e) {
+        const target = e.target;
+        const value = target.value;
+        if (target.checked === true) {
+            this.setState((prevState) => ({
+                genre_ids: prevState.genre_ids.concat(value)
+            }));
+        } else {
+            this.setState((prevState) => ({
+                genre_ids: prevState.genre_ids.filter((item) => {
+                    return item !== value;
+                })
+            }));
+        }
+    }
+
+    formSubmit(e) {
         e.preventDefault();
-        const newMovie = {
+        let genreIds = this.state.genresFromLS.filter((genre) => {
+            return this.state.genre_ids.includes(genre.name);
+        });
+        const item = {
             title: this.state.title,
             overview: this.state.overview,
-            genre_ids: this.state.genre_ids,
+            genre_ids: genreIds.map(elem => elem.id),
             adult: this.state.adult,
             id: this.state.id,
             poster: this.state.poster
         }
-        this.props.addCustomMovie(newMovie);
+        if (this.props.addCustomMovie) {
+            this.props.addCustomMovie(item);
+            this.props.closeForm();
+        }
     }
 
     loadInView(file, elem) {
         var fileReader = new FileReader();
         fileReader.onloadend = () => {
             elem.src = fileReader.result;
+            this.setState(() => ({
+                poster: elem.src
+            }));
         }
         fileReader.readAsDataURL(file);
     }
 
     render() {
-        console.log(this.props)
-        const { isOpened, closeForm, addNewMovie } = this.props;
+        const { isOpened, closeForm } = this.props;
         return (
-            <form className='mdb-container-form' onSubmit={this.submit.bind(this)}>
+            <form className='mdb-container-form' onSubmit={this.formSubmit.bind(this)}>
                 <div className={!isOpened ? 'mdb-container-form__wrapper' : 'mdb-container-form__wrapper mdb-container-form__wrapper--open'}>
                     <h3 className='mdb-container-form__caption'>Add Movie</h3>
                     <hr className='mdb-container-form__line' />
@@ -79,34 +125,64 @@ class AddMovie extends Component {
                             <Input
                                 type='text'
                                 className='mdb-container-form__title'
-                                classNameForLabel='mdb-container-form__label'
                                 classNameForWrapper='mdb-container-form__title-wrapper'
                                 label='Title'
+                                name='title'
+                                onChange={this.onTitleChange.bind(this)}
                             />
+                            <p className={this.state.title.length === 0 ?
+                                'mdb-container-form__validation-fail'
+                                :
+                                'mdb-container-form__validation-success'}
+                            >Title is required</p>
                             <Textarea
                                 className='mdb-container-form__textarea'
                                 classNameForLabel='mdb-container-form__label'
                                 classNameForWrapper='mdb-container-form__overview-wrapper'
                                 label='Overview'
+                                name='overview'
+                                onChange={this.onOverviewChange.bind(this)}
                             />
                         </div>
                         <div className='mdb-container-form__checkbox-wrapper'>
                             <label>Genres</label>
                             <div className='mdb-container-form__genres'>
-                                <GenresList />
+                                <GenresList
+                                    onClickHandler={this.handleGenreChange.bind(this)}
+                                />
+
                             </div>
+                            <p className={this.state.genre_ids.length === 0 ?
+                                'mdb-container-form__validation-fail'
+                                : 'mdb-container-form__validation-success'}
+                            >Genres is required</p>
                             <input
+                                name='adult'
                                 type='checkbox'
                                 className='mdb-container-form__checkbox-adult'
-                                ref='_adult'
-                            /> Adult
-            </div>
+                                onChange={this.onAdultChage.bind(this)}
+                            />
+                            <label htmlFor="adult">Adult</label>
+                        </div>
                         <div className='mdb-container-form__submit'>
-                            <div className='mdb-container-form__drop-files' draggable='true'
-                                ref={div => { this.dropzone = div }}>
+                            <div
+                                className='mdb-container-form__drop-files'
+                                draggable='true'
+                                ref={div => { this.dropzone = div }}
+                            >
+                                <i className="fas fa-upload fa-2x"></i>
+                                Upload Posters
                             </div>
-                            <div className='mdb-container-form__droped'>
-                                <img src=' alt=' className='mdb-container-form__dropped-image'
+                            <p className={this.state.countOfPosters === 0 ?
+                                'mdb-container-form__validation-fail'
+                                :
+                                'mdb-container-form__validation-success'}
+                            >Upload 1 poster as minimum</p>
+                            <div className={!this.state.countOfPosters ?
+                                'mdb-container-form__droped' :
+                                'mdb-container-form__droped mdb-container-form__droped--scroll'}
+                            >
+                                <img src='' alt='' className='mdb-container-form__dropped-image'
                                     ref={img => { this.dropped = img }} />
                             </div>
                             <div className='mdb-container-form__buttons-wrapper'>
@@ -115,6 +191,7 @@ class AddMovie extends Component {
                                     className='mdb-container-form__button'
                                     modifier='mdb-container-form__button--add'
                                     label='Add'
+                                    disabled={this.checkValidation()}
                                 />
                                 <Button
                                     type='reset'
@@ -139,9 +216,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    closeForm: (event) => {
+    closeForm: (e) => {
         dispatch(closeForm())
-        event.preventDefault();
+        e.preventDefault();
     }
 })
 
