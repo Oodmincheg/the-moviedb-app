@@ -1,31 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { toggleForm } from '../../store/actions';
 import './top-navigation.css';
 
-export class Navigation extends Component {
-    render() {
-        return (
-            <div className='mdb-top-navigation'>
-                <div className='mdb-top-navigation__links' >
-                        <a
-                            className='mdb-top-navigation__item'
-                            href=''
-                            onClick={this.props.toggleForm}
-                        >
-                            Add Movie
-                        </a>
-                        <a
-                            className='mdb-top-navigation__item'
-                            href=''
-                        >
-                            About
-                        </a>
-                </div>
-            </div>
-        );
-    }
-}
+export const Navigation = ({ isOpened, toggleForm }) => (
+    <div className='mdb-top-navigation'>
+        <div className='mdb-top-navigation__links' >
+            <a
+                className={isOpened ?
+                    'mdb-top-navigation__item mdb-top-navigation__item--active' :
+                    'mdb-top-navigation__item'
+                }
+                href=''
+                onClick={toggleForm}
+            >
+                Add Movie
+            </a>
+            <a
+                className='mdb-top-navigation__item'
+                href=''
+            >
+                About
+            </a>
+        </div>
+    </div>
+);
+
 
 const mapStateToProps = (state) => {
     return {

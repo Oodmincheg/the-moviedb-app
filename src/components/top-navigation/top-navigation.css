@@ -8,3 +8,7 @@
     margin: 0 0 0 20px;
     color: #037DBB;
 }
+
+.mdb-top-navigation__item--active {
+    color: red;
+}
