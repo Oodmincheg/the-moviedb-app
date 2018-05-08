@@ -31,6 +31,7 @@ export const Sidebar = ({ items, isOpened }) => {
                             className='mdb-sidebar__links'
                             key={index}
                             to={item.to}
+                            activeStyle={{color: '#037DBB'}}
                         >
                             <i className={item.icon} />
                             {item.label}
