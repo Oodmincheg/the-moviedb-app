@@ -9,9 +9,3 @@ export const getItemFromLocalStorage = (item) => {
         return JSON.parse(localStorage.getItem(item));
     }
 }
-
-export const setLocalRemoveLast = (array, key) => {
-    let arrToStr = JSON.stringify(array);
-    localStorage.removeItem(key);
-    localStorage.setItem(key, arrToStr);
-}
