@@ -5,17 +5,10 @@ import './genres.css';
 import { getGenres } from '../../store/actions/';
 
 class Genres extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            genresCheck: []
-        }
-    }
-
+    
     componentDidMount() {
         this.props.getGenres();
     }
-
 
     render() {
         let key = 0;
