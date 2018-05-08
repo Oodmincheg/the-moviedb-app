@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovies } from '../../store/actions';
-import { Poster } from '../poster';
-import { Search } from '../search';
-import { AddMovieForm } from '../add-movie';
-import { Preloader } from '../preloader';
+import { Poster } from '../../components/poster';
+import { Search } from '../../components/search';
+import { AddMovieForm } from '../../components/add-movie';
+import { Preloader } from '../../components/preloader';
 import { addCustomMovie } from '../../store/actions';
 import './movies.css';
 
@@ -41,8 +41,8 @@ class Movies extends Component {
           >
             <Search />
           </div>
-          <div >
-            <AddMovieForm addMovie={this.props.addCustomMovie} />
+          <div>
+            <AddMovieForm addCustomMovie={this.props.addCustomMovie} />
           </div>
           <div className='mdb-container-movies__inner' >
             {filteredMovies.map(movie =>

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchTvShows } from '../../store/actions';
-import { Poster } from '../poster';
-import { Search } from '../search';
-import { Preloader } from '../preloader';
+import { Poster } from '../../components/poster';
+import { Search } from '../../components/search';
+import { AddMovieForm } from '../../components/add-movie';
+import { Preloader } from '../../components/preloader';
+import { addCustomTvshow } from '../../store/actions';
 import '../movies/movies.css';
 
 class TvShows extends Component {
@@ -39,6 +41,9 @@ class TvShows extends Component {
           >
             <Search />
           </div>
+          <div>
+            <AddMovieForm addCustomMovie={this.props.addCustomTvshow} />
+          </div>
           <div className='mdb-container-movies__inner'>
             {filteredTvShows.map(tvShow =>
               <Poster
@@ -65,7 +70,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTvShows: bindActionCreators(fetchTvShows, dispatch)
+    fetchTvShows: bindActionCreators(fetchTvShows, dispatch),
+    addCustomTvshow: (item) => {
+      dispatch(addCustomTvshow(item));
+    }
   }
 }
 
