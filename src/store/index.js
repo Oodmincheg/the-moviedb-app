@@ -3,9 +3,13 @@ import { rootReducer } from './reducers';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { genresMiddleware } from './middleware';
-import { moviesMiddleware } from './middleware';
-import { tvShowsMiddleware } from './middleware';
+import {
+    genresMiddleware,
+    addMovieMiddleware,
+    moviesMiddleware,
+    tvShowsMiddleware,
+    addTvShowMiddleware
+} from './middleware';
 
 export function configureStore(initialState) {
     const store = createStore(
@@ -16,7 +20,9 @@ export function configureStore(initialState) {
             thunk,
             genresMiddleware,
             moviesMiddleware,
-            tvShowsMiddleware
+            tvShowsMiddleware,
+            addMovieMiddleware,
+            addTvShowMiddleware
         )
         ),
         (localStorage['redux-store']) ?

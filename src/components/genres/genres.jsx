@@ -7,17 +7,24 @@ import { getGenres } from '../../store/actions/';
 class Genres extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            genresCheck: []
+        }
     }
 
     componentDidMount() {
         this.props.getGenres();
     }
 
+
     render() {
         let key = 0;
         const { genres } = this.props;
         return (
-            <div className='mdb-container-form__genres-list'>
+            <div
+                className='mdb-container-form__genres-list'
+                onClick={this.props.onClickHandler}
+            >
                 {genres.map(genre =>
                     <div
                         className='mdb-container-form__genres-item'
@@ -25,10 +32,13 @@ class Genres extends Component {
                     >
                         <input
                             className='mdb-container-form__check-genre'
-                            type={genre.type}
+                            type='checkbox'
                             key={genre.id}
+                            name='genre'
+                            value={genre.name}
+                            onChange={this.props.onChange}
                         />
-                        <label key={genre.label}>{genre.label}</label>
+                        <label key={genre.name}>{genre.name}</label>
                     </div>
                 )}
             </div>

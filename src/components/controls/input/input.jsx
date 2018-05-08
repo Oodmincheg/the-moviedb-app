@@ -5,15 +5,17 @@ export const Input = ({
     type,
     className,
     classNameForWrapper,
-    classNameForLabel,
-    label
+    label,
+    onChange,
+    name
 }) => (
         <div className={classNameForWrapper}>
-            <label className={classNameForLabel}>{label}</label>
+            <label>{label}</label>
             <input
                 type={type}
                 className={className}
-                required
+                onChange={onChange}
+                name={name}
             />
         </div>
     );

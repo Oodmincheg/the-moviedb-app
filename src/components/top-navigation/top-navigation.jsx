@@ -10,14 +10,14 @@ export class Navigation extends Component {
                 <div className='mdb-top-navigation__links' >
                         <a
                             className='mdb-top-navigation__item'
-                            href='#'
+                            href=''
                             onClick={this.props.toggleForm}
                         >
                             Add Movie
                         </a>
                         <a
                             className='mdb-top-navigation__item'
-                            href='#'
+                            href=''
                         >
                             About
                         </a>
@@ -34,8 +34,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    toggleForm: (event) => {
-        dispatch(toggleForm())
+    toggleForm: (e) => {
+        dispatch(toggleForm());
+        e.preventDefault();
     }
 })
 

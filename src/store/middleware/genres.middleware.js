@@ -2,29 +2,44 @@ import {
     GET_GENRES,
     GET_GENRES_SUCCESS,
     GET_GENRES_FAILURE,
-    genresData,
     genresFromTMDB
 } from '../../constants';
-import { getGenreData } from '../../services';
+import {
+    getGenresData,
+    setItemsToLocalStorage,
+    getItemFromLocalStorage
+} from '../../services';
 
 export const genresMiddleware = store => next => action => {
-    if (action.type === GET_GENRES)
-        try {
-            getGenreData(genresData).then((result) => {
-                let genres = result;
-                let data = genres;
-                console.log(result);
-                store.dispatch({
-                    type: GET_GENRES_SUCCESS,
-                    payload: data
+    if (action.type === GET_GENRES) {
+        let genresFromLS = getItemFromLocalStorage('genres');
+        if (!genresFromLS) {
+            try {
+                getGenresData(genresFromTMDB).then((result) => {
+                    let genres = result;
+                    let data = genres;
+                    setItemsToLocalStorage('genres', data);
+                    store.dispatch({
+                        type: GET_GENRES_SUCCESS,
+                        payload: data
+                    });
                 });
-            });
-        } catch (err) {
+            } catch (err) {
+                store.dispatch({
+                    type: GET_GENRES_FAILURE,
+                    payload: err,
+                    error: true
+                });
+            }
+        } else {
+            let genresLS = getItemFromLocalStorage('genres');
+            let genres = genresLS || JSON.parse(genresLS);
+
             store.dispatch({
-                type: GET_GENRES_FAILURE,
-                payload: err,
-                error: true
+                type: GET_GENRES_SUCCESS,
+                payload: genres
             });
         }
+    }
     return next(action);
 }

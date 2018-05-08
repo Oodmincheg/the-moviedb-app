@@ -1,5 +1,4 @@
 import {
-    FETCH_MOVIES_START,
     FETCH_MOVIES_SUCCESS,
     ADD_CUSTOM_MOVIE
 } from '../../constants';
@@ -20,7 +19,7 @@ export function moviesReducer(state = initialState, { type, payload }) {
         case ADD_CUSTOM_MOVIE:
             return {
                 ...state,
-                movies: [payload, ...state.movies]
+                movies: [...state.movies, payload]
             }
         default:
             return state;

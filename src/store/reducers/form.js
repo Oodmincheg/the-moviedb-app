@@ -5,8 +5,7 @@ import {
 } from '../../constants';
 
 const initialState = {
-    state: 'INITIAL',
-    isFormOpen: true
+    isFormOpen: false
 }
 
 export function formReducer(state = initialState, { type }) {

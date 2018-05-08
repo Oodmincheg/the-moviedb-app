@@ -3,14 +3,17 @@ import './textarea.css';
 
 export const Textarea = ({
     className,
-    classNameForLabel,
     classNameForWrapper,
-    label
+    label,
+    onChange,
+    name
 }) => (
         <div className={classNameForWrapper}>
-            <label className={classNameForLabel}>
-                {label}
-            </label>
-            <textarea className={className}></textarea>
+            <label>{label}</label>
+            <textarea
+                className={className}
+                name='name'
+                onChange={onChange}
+            ></textarea>
         </div>
     )

@@ -15,7 +15,7 @@ export const getData = (url) => new Promise((resolve, reject) => {
     console.log(request.response);
 });
 
-export const getGenreData = (url) => new Promise((resolve, reject) => {
+export const getGenresData = (url) => new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
     request.open('GET', url);
     request.onload = () =>

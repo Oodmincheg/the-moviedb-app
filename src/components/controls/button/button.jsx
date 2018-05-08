@@ -6,12 +6,14 @@ export const Button = ({
     className,
     modifier,
     label,
+    disabled,
     onClick
 }) => (
         <button
             type={type}
             className={`${className} ${modifier}`}
             onClick={onClick}
+            disabled={disabled}
         >
             {label}
         </button>
