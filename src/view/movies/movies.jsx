@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMovies } from '../../store/actions';
 import { Poster } from '../../components/poster';
 import { Search } from '../../components/search';
 import { AddMovieForm } from '../../components/add-movie';
 import { Preloader } from '../../components/preloader';
-import { addCustomMovie } from '../../store/actions';
+import {
+  addCustomMovie,
+  fetchMovies,
+  addMovieToLibrary,
+  removeMovieFromLibrary
+} from '../../store/actions';
+import { Link, NavLink } from 'react-router-dom';
 import './movies.css';
 
 class Movies extends Component {
@@ -26,7 +31,8 @@ class Movies extends Component {
   }
 
   render() {
-    const { movies, isLoaded } = this.props;
+    const {
+      movies, isLoaded } = this.props;
     let filteredMovies = movies.filter((movie) => {
       return movie.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
     });
@@ -46,12 +52,21 @@ class Movies extends Component {
           </div>
           <div className='mdb-container-movies__inner' >
             {filteredMovies.map(movie =>
-              <Poster
-                className='mdb-container-movies__poster'
-                src={movie.poster}
-                key={movie.id}
-                alt={movie.title}
-              />
+              <Link  
+              to={`/movies/${movie.id}`}
+              key={movie.id*2}
+              >
+                <Poster
+                  style={movie.poster}
+                  key={movie.id}
+                  alt={movie.title}
+                  item={movie}
+                  addItemToLibrary={this.props.addItemToLibrary}
+                  removeItemFromLibrary={this.props.removeItemFromLibrary}
+                >
+                  {/* <div className='mdb-container-movies__title'>{movie.title}</div> */}
+                </Poster>
+              </Link>
             )}
           </div>
         </div>
@@ -63,7 +78,8 @@ class Movies extends Component {
 const mapStateToProps = (state) => {
   return {
     movies: state.moviesReducer.movies,
-    isLoaded: state.moviesReducer.isLoaded
+    isLoaded: state.moviesReducer.isLoaded,
+    myLibrary: state.libraryReducer.libraryArray
   }
 }
 
@@ -72,6 +88,12 @@ const mapDispatchToProps = (dispatch) => {
     fetchMovies: bindActionCreators(fetchMovies, dispatch),
     addCustomMovie: (item) => {
       dispatch(addCustomMovie(item));
+    },
+    addItemToLibrary: (item) => {
+      dispatch(addMovieToLibrary(item));
+    },
+    removeItemFromLibrary: (item) => {
+      dispatch(removeMovieFromLibrary(item))
     }
   }
 }

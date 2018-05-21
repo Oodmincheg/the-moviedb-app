@@ -1,0 +1,8 @@
+.mdb-library__view {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 360px;
+    margin-top: 20px;
+    background-color: #262126;
+    max-width: 100%;
+}

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchTvShows } from '../../store/actions';
 import { Poster } from '../../components/poster';
 import { Search } from '../../components/search';
 import { AddMovieForm } from '../../components/add-movie';
 import { Preloader } from '../../components/preloader';
-import { addCustomTvshow } from '../../store/actions';
+import { Link } from 'react-router-dom';
+import {
+  addCustomTvshow,
+  fetchTvShows,
+  addTvShowToLibrary,
+  removeTvShowFromLibrary
+} from '../../store/actions';
 import '../movies/movies.css';
 
 class TvShows extends Component {
@@ -46,13 +51,20 @@ class TvShows extends Component {
           </div>
           <div className='mdb-container-movies__inner'>
             {filteredTvShows.map(tvShow =>
-              <Poster
-                className='mdb-container-movies__poster'
-                src={tvShow.poster}
-                key={tvShow.id}
-                alt={tvShow.title}
-                title={tvShow.title}
-              />
+              <Link
+                to={`/tvshows/${tvShow.id}`}
+                key={tvShow.id*2}
+              >
+                <Poster
+                  style={tvShow.poster}
+                  key={tvShow.id}
+                  item={tvShow}
+                  alt={tvShow.title}
+                  title={tvShow.title}
+                  addItemToLibrary={this.props.addItemToLibrary}
+                  removeItemFromLibrary={this.props.removeItemFromLibrary}
+                ></Poster>
+              </Link>
             )}
           </div>
         </div>
@@ -64,7 +76,8 @@ class TvShows extends Component {
 const mapStateToProps = (state) => {
   return {
     tvShows: state.tvShowsReducer.tvShows,
-    isLoaded: state.tvShowsReducer.isLoaded
+    isLoaded: state.tvShowsReducer.isLoaded,
+    myLibrary: state.libraryReducer.libraryArray
   }
 }
 
@@ -73,6 +86,12 @@ const mapDispatchToProps = (dispatch) => {
     fetchTvShows: bindActionCreators(fetchTvShows, dispatch),
     addCustomTvshow: (item) => {
       dispatch(addCustomTvshow(item));
+    },
+    addItemToLibrary: (item) => {
+      dispatch(addTvShowToLibrary(item));
+    },
+    removeItemFromLibrary: (item) => {
+      dispatch(removeTvShowFromLibrary(item));
     }
   }
 }

@@ -2,21 +2,21 @@ export const sidebarNavigation = [
     {
         to: '/movies',
         label: 'Movies',
-        icon: 'fas fa-film'
+        icon: 'fa fa-film'
     },
     {
         to: '/tvshows',
         label: 'TV Shows',
-        icon: 'fas fa-desktop'
+        icon: 'fa fa-desktop'
     },
     {
         to: '/library',
         label: ' My Library',
-        icon: 'fas fa-book'
+        icon: 'fa fa-book'
     },
     {
         to: '/support',
         label: 'Support',
-        icon: 'fas fa-info-circle'
+        icon: 'fa fa-info-circle'
     }
 ];

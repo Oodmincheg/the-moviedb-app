@@ -1,4 +1,4 @@
-export const setItemsToLocalStorage = (name, item) => {
+export const setItemToLocalStorage = (name, item) => {
     if (typeof name === 'string') {
         return localStorage.setItem(name, JSON.stringify(item));
     }

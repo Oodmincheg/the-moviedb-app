@@ -8,7 +8,7 @@ import {
     getData,
     TvShowEntity,
     getItemFromLocalStorage,
-    setItemsToLocalStorage
+    setItemToLocalStorage
 } from '../../services';
 
 export const tvShowsMiddleware = store => next => action => {
@@ -26,7 +26,7 @@ export const tvShowsMiddleware = store => next => action => {
                     if(customTvShows) {
                         data = tvShows.concat(customTvShows);
                     }
-                    setItemsToLocalStorage('tvShows', data)
+                    setItemToLocalStorage('tvShows', data)
                     store.dispatch({
                         type: FETCH_TVSHOWS_SUCCESS,
                         payload: data

@@ -8,7 +8,8 @@ import {
     addMovieMiddleware,
     moviesMiddleware,
     tvShowsMiddleware,
-    addTvShowMiddleware
+    addTvShowMiddleware,
+    myLibraryMiddleware
 } from './middleware';
 
 export function configureStore(initialState) {
@@ -22,7 +23,8 @@ export function configureStore(initialState) {
             moviesMiddleware,
             tvShowsMiddleware,
             addMovieMiddleware,
-            addTvShowMiddleware
+            addTvShowMiddleware,
+            myLibraryMiddleware
         )
         ),
         (localStorage['redux-store']) ?

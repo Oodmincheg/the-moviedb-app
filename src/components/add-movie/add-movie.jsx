@@ -170,7 +170,7 @@ class AddMovie extends Component {
                                 draggable='true'
                                 ref={div => { this.dropzone = div }}
                             >
-                                <i className="fas fa-upload fa-2x"></i>
+                                <i className="fa fa-upload fa-2x"></i>
                                 Upload Posters
                             </div>
                             <p className={this.state.countOfPosters === 0 ?

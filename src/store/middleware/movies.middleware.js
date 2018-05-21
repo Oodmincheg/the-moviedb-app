@@ -7,7 +7,7 @@ import {
 import {
     getData,
     MovieEntity,
-    setItemsToLocalStorage,
+    setItemToLocalStorage,
     getItemFromLocalStorage
 } from '../../services';
 
@@ -26,7 +26,7 @@ export const moviesMiddleware = store => next => action => {
                     if (customMovies) {
                         data = movies.concat(customMovies);
                     }
-                    setItemsToLocalStorage('movies', data);
+                    setItemToLocalStorage('movies', data);
                     store.dispatch({
                         type: FETCH_MOVIES_SUCCESS,
                         payload: data

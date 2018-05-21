@@ -6,7 +6,7 @@ import {
 } from '../../constants';
 import {
     getGenresData,
-    setItemsToLocalStorage,
+    setItemToLocalStorage,
     getItemFromLocalStorage
 } from '../../services';
 
@@ -18,7 +18,7 @@ export const genresMiddleware = store => next => action => {
                 getGenresData(genresFromTMDB).then((result) => {
                     let genres = result;
                     let data = genres;
-                    setItemsToLocalStorage('genres', data);
+                    setItemToLocalStorage('genres', data);
                     store.dispatch({
                         type: GET_GENRES_SUCCESS,
                         payload: data

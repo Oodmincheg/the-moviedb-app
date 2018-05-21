@@ -3,7 +3,7 @@ import {
     CLOSE_FORM
 } from '../../constants';
 import {
-    setItemsToLocalStorage,
+    setItemToLocalStorage,
     getItemFromLocalStorage
 } from '../../services';
 
@@ -14,8 +14,8 @@ export const addMovieMiddleware = store => next => action => {
         action.payload.movie = true;
         addedMovies.push(action.payload);
         let updatedMovies = movies.concat(addedMovies);
-        setItemsToLocalStorage('movies', updatedMovies);
-        setItemsToLocalStorage('addedMovies', addedMovies);
+        setItemToLocalStorage('movies', updatedMovies);
+        setItemToLocalStorage('addedMovies', addedMovies);
         store.dispatch({
             type: CLOSE_FORM
         });
