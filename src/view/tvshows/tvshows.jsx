@@ -83,7 +83,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTvShows: bindActionCreators(fetchTvShows, dispatch),
+    fetchTvShows: () => {
+      dispatch(fetchTvShows());
+    },
     addCustomTvshow: (item) => {
       dispatch(addCustomTvshow(item));
     },
