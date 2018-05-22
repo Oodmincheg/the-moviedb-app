@@ -4,7 +4,8 @@ import { EmptyLibrary } from '../../components/empty-library';
 import { Poster } from '../../components/poster';
 import {
     initializeMyLibrary,
-    removeMovieFromLibrary
+    removeMovieFromLibrary,
+    removeTvShowFromLibrary
 } from '../../store/actions';
 import { Link } from 'react-router-dom';
 import './my-library.css';
@@ -43,7 +44,11 @@ export class MyLibrary extends Component {
                                         item={m}
                                         alt={m.title}
                                         title={m.title}
-                                        removeItemFromLibrary={this.props.removeItemFromLibrary}
+                                        removeItemFromLibrary={
+                                            m.type === 'tvshow' ?
+                                                this.props.removeTvShowFromLibrary :
+                                                this.props.removeMovieFromLibrary
+                                        }
                                     />
                                 </Link>
                             );
@@ -67,8 +72,11 @@ export const mapDispatchToProps = (dispatch) => {
         initializeMyLibrary: () => {
             dispatch(initializeMyLibrary());
         },
-        removeItemFromLibrary: (item) => {
+        removeMovieFromLibrary: (item) => {
             dispatch(removeMovieFromLibrary(item));
+        },
+        removeTvShowFromLibrary: (item) => {
+            dispatch(removeTvShowFromLibrary(item));
         }
     }
 }
