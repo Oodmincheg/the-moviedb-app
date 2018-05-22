@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Poster } from '../../components/poster';
 import { Search } from '../../components/search';
 import { AddMovieForm } from '../../components/add-movie';

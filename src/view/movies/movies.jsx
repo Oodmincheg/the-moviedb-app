@@ -10,7 +10,7 @@ import {
   addMovieToLibrary,
   removeMovieFromLibrary
 } from '../../store/actions';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './movies.css';
 
 class Movies extends Component {
