@@ -14,13 +14,12 @@ const initialState = {
 export function libraryReducer(state = initialState, { type, payload }) {
     switch (type) {
         case INITIALIZE_MY_LIBRARY:
-            let libraryArrayFromLS = getItemFromLocalStorage('my-library') || [];
+            let libraryArrayFromLS = getItemFromLocalStorage('my-library');
             return {
                 ...state,
                 libraryArray: libraryArrayFromLS
             }
-
-        case ADD_MOVIE_TO_LIBRARY:
+        case ADD_MOVIE_TO_LIBRARY: 
             let movie = payload;
             movie.isInLibrary = true;
             localStorage.removeItem('my-library');
