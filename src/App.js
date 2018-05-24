@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MovieList } from './view/movies'
-import { Sidebar } from './components/sidebar';
+import { SidebarComponent } from './components/sidebar';
 import { TopNavigation } from './components/top-navigation';
 import { TvShowsList } from './view/tvshows';
 import { Library } from './view/my-library';
@@ -16,7 +16,7 @@ export class App extends Component {
       <HashRouter>
         <div className='mdb-container__main' >
           <TopNavigation />
-          <Sidebar />
+          <SidebarComponent />
           <Switch>
             <Route exact path='/' component={MovieList} />
             <Route exact path='/movies' component={MovieList} />
@@ -30,3 +30,7 @@ export class App extends Component {
     );
   }
 }
+
+
+
+// export const AppComponent = connect(mapStatetoProps, mapDispatchToProps)(App);

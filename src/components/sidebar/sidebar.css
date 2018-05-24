@@ -43,3 +43,7 @@
     font-size: 22px;
     text-align: center;
 }
+
+.active-link {
+    color: #037DBB;
+}

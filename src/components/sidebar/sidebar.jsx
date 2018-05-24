@@ -1,13 +1,15 @@
 import React from 'react';
-import './sidebar.css';
 import { sidebarNavigation } from '../../data'
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggleSidebar } from '../../store/actions';
+import './sidebar.css';
 
-export const Sidebar = ({ items, isOpened }) => {
+export const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     return (
         <div className='mdb-sidebar'>
             <div
-                className={isOpened ?
+                className={isSidebarOpen ?
                     'mdb-sidebar__wrapper' :
                     'mdb-sidebar__wrapper mdb-sidebar__wrapper-close'}
                 id='mdb-wrapper'
@@ -16,6 +18,7 @@ export const Sidebar = ({ items, isOpened }) => {
                     <i
                         className="fa fa-bars fa-2x"
                         aria-hidden="true"
+                        onClick={toggleSidebar}
                     ></i>
                 </div>
                 <span className='mdb-sidebar__logo'>
@@ -25,20 +28,60 @@ export const Sidebar = ({ items, isOpened }) => {
                     </i> Logo
                     </span>
                 <div className='mdb-sidebar__navigation'>
-                    {sidebarNavigation.map((item, index) =>
                         <NavLink
                             href='#'
                             className='mdb-sidebar__links'
-                            key={index}
-                            to={item.to}
-                            activeStyle={{color: '#037DBB'}}
+                            to='/movies'
+                            activeClassName='active-link'
                         >
-                            <i className={item.icon} />
-                            {item.label}
+                            <i className='fa fa-film'/>
+                            Movies
                         </NavLink>
-                    )}
+                        <NavLink
+                            href='#'
+                            className='mdb-sidebar__links'
+                            to='/tvshows'
+                            activeClassName='active-link'
+                        >
+                            <i className='fa fa-desktop'/>
+                            TV Shows
+                        </NavLink>
+                        <NavLink
+                            href='#'
+                            className='mdb-sidebar__links'
+                            to='/library'
+                            activeClassName='active-link'
+                        >
+                            <i className='fa fa-book'/>
+                            My Library
+                        </NavLink>
+                        <NavLink
+                            href='#'
+                            className='mdb-sidebar__links'
+                            to='/support'
+                            activeClassName='active-link'
+                        >
+                            <i className='fa fa-info-circle'/>
+                            Support
+                        </NavLink>
                 </div>
             </div>
         </div>
     );
 };
+
+const mapStatetoProps = (state) => {
+  return {
+    isSidebarOpen: state.sidebarReducer.isSidebarOpen
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleSidebar: () => {
+      dispatch(toggleSidebar());
+    }
+  }
+}
+
+export const SidebarComponent = connect(mapStatetoProps, mapDispatchToProps)(Sidebar);
