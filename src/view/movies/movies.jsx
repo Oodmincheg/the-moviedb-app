@@ -30,8 +30,7 @@ class Movies extends Component {
   }
 
   render() {
-    const {
-      movies, isLoaded } = this.props;
+    const { movies, isLoaded } = this.props;
     let filteredMovies = movies.filter((movie) => {
       return movie.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
     });
