@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { MovieList } from './view/movies'
-import { SidebarComponent } from './components/sidebar';
+import { Sidebar } from './components/sidebar';
 import { TopNavigation } from './components/top-navigation';
 import { TvShowsList } from './view/tvshows';
 import { Library } from './view/my-library';
 import { MovieDetailsPage } from './view/movie-details';
 import { TvShowDetailsPage } from './view/tvshow-details';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import './assets/fontawesome-free-5.0.12/web-fonts-with-css/css/fontawesome-all.min.css';
 
 export class App extends Component {
   render() {
     return (
-      <HashRouter>
+      <Router>
         <div className='mdb-container__main' >
           <TopNavigation />
-          <SidebarComponent />
+          <Sidebar />
           <Switch>
             <Route exact path='/' component={MovieList} />
             <Route exact path='/movies' component={MovieList} />
@@ -26,7 +26,7 @@ export class App extends Component {
             <Route path='/tvshows/:id' component={TvShowDetailsPage} />
           </Switch>
         </div>
-      </HashRouter>
+      </Router>
     );
   }
 }

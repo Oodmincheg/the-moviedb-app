@@ -6,10 +6,10 @@ import { genresReducer } from './genres';
 import { libraryReducer } from './my-library';
 import { sidebarReducer } from './sidebar';
 export const rootReducer = combineReducers({
-    moviesReducer,
-    tvShowsReducer,
-    formReducer,
-    genresReducer,
-    libraryReducer,
-    sidebarReducer
+	moviesReducer,
+	tvShowsReducer,
+	formReducer,
+	genresReducer,
+	libraryReducer,
+	sidebarReducer
 });

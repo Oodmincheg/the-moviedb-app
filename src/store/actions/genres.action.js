@@ -1,9 +1,9 @@
 import {
-    GET_GENRES
+	GET_GENRES
 } from '../../constants';
 
 export function getGenres() {
-    return {
-        type: GET_GENRES
-    }
+	return {
+		type: GET_GENRES
+	}
 }
