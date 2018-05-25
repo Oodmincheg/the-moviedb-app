@@ -30,7 +30,7 @@ class Movies extends Component {
   }
 
   render() {
-    const { movies, isLoaded } = this.props;
+    const { movies, isLoaded, isSidebarOpen } = this.props;
     let filteredMovies = movies.filter((movie) => {
       return movie.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
     });
@@ -38,34 +38,36 @@ class Movies extends Component {
       return <Preloader className='mdb-spinner' />
     } else {
       return (
-        <div className='mdb-container-movies'>
-          <div
-            className='mdb-container-movies__inner mdb-container-movies__inner-search'
-            onChange={this.handleSearch.bind(this)}
-          >
-            <Search />
-          </div>
-          <div>
-            <AddMovieForm addCustomMovie={this.props.addCustomMovie} />
-          </div>
-          <div className='mdb-container-movies__inner' >
-            {filteredMovies.map(movie =>
-              <Link  
-              to={`/movies/${movie.id}`}
-              key={movie.id*2}
-              >
-                <Poster
-                  style={movie.poster}
-                  key={movie.id}
-                  alt={movie.title}
-                  item={movie}
-                  addItemToLibrary={this.props.addItemToLibrary}
-                  removeItemFromLibrary={this.props.removeItemFromLibrary}
+        <div className='mdb-movies'>
+          <div className={isSidebarOpen ?  'mdb-movies__wrapper' : 'mdb-movies__wrapper mdb-movies__wrapper--wider'}>
+            <div
+              className='mdb-movies__search' 
+              onChange={this.handleSearch.bind(this)}
+            >
+              <Search />
+            </div>
+            <div>
+              <AddMovieForm addCustomMovie={this.props.addCustomMovie} />
+            </div>
+            <div className='mdb-movies__inner'>
+              {filteredMovies.map(movie =>
+                <Link
+                  to={`/movies/${movie.id}`}
+                  key={movie.id * 2}
                 >
-                  {/* <div className='mdb-container-movies__title'>{movie.title}</div> */}
-                </Poster>
-              </Link>
-            )}
+                  <Poster
+                    style={movie.poster}
+                    key={movie.id}
+                    alt={movie.title}
+                    item={movie}
+                    addItemToLibrary={this.props.addItemToLibrary}
+                    removeItemFromLibrary={this.props.removeItemFromLibrary}
+                  >
+                    {/* <div className='mdb-container-movies__title'>{movie.title}</div> */}
+                  </Poster>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       );
@@ -77,7 +79,8 @@ const mapStateToProps = (state) => {
   return {
     movies: state.moviesReducer.movies,
     isLoaded: state.moviesReducer.isLoaded,
-    myLibrary: state.libraryReducer.libraryArray
+    myLibrary: state.libraryReducer.libraryArray,
+    isSidebarOpen: state.sidebarReducer.isSidebarOpen
   }
 }
 

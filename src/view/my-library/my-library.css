@@ -5,4 +5,9 @@
     margin-top: 20px;
     background-color: #262126;
     max-width: 100%;
+    transition: 0.2s ease-out;
+}
+
+.mdb-library__view--wider {
+    margin-left: 100px;
 }
