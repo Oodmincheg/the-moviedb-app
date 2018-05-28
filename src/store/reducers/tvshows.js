@@ -6,7 +6,7 @@ import {
 const initialState = {
 	tvShows: [],
 	isLoaded: false
-}
+};
 
 export function tvShowsReducer(state = initialState, { type, payload }) {
 	switch (type) {
@@ -15,12 +15,12 @@ export function tvShowsReducer(state = initialState, { type, payload }) {
 				...state,
 				tvShows: payload,
 				isLoaded: true
-			}
+			};
 		case ADD_CUSTOM_TVSHOW:
 			return {
 				...state,
 				tvShows: [...state.tvShows, payload]
-			}
+			};
 		default:
 			return state;
 	}

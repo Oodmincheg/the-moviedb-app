@@ -7,7 +7,7 @@ const classNames = {
 	save: 'fas fa-save mdb-poster__button mdb-poster__button--save',
 	remove: 'fas fa-trash-alt mdb-poster__button mdb-poster__button--remove',
 	info: 'fas fa-info mdb-poster__button'
-}
+};
 
 
 export const Poster = ({

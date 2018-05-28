@@ -9,7 +9,7 @@ import { setItemToLocalStorage, getItemFromLocalStorage } from '../../services/l
 
 const initialState = {
 	libraryArray: []
-}
+};
 
 export function libraryReducer(state = initialState, { type, payload }) {
 	switch (type) {
@@ -18,7 +18,7 @@ export function libraryReducer(state = initialState, { type, payload }) {
 			return {
 				...state,
 				libraryArray: libraryArrayFromLS
-			}
+			};
 		case ADD_MOVIE_TO_LIBRARY:
 			let movie = payload;
 			movie.isInLibrary = true;
@@ -27,7 +27,7 @@ export function libraryReducer(state = initialState, { type, payload }) {
 			return {
 				...state,
 				libraryArray: [...state.libraryArray, payload]
-			}
+			};
 		case REMOVE_MOVIE_FROM_LIBRARY:
 			let updatedLibrary = state.libraryArray.filter(m => m.id !== payload.id);
 			let deletedMovie = payload;
@@ -37,7 +37,7 @@ export function libraryReducer(state = initialState, { type, payload }) {
 			return {
 				...state,
 				libraryArray: updatedLibrary
-			}
+			};
 		case ADD_TVSHOW_TO_LIBRARY:
 			let tvShow = payload;
 			tvShow.isInLibrary = true;
@@ -45,17 +45,17 @@ export function libraryReducer(state = initialState, { type, payload }) {
 			return {
 				...state,
 				libraryArray: [...state.libraryArray, payload]
-			}
+			};
 		case REMOVE_TVSHOW_FROM_LIBRARY:
 			let deletedTvShow = payload;
 			deletedTvShow.isInLibrary = false;
-			var updatedLibrary = state.libraryArray.filter(m => m.id !== payload.id);
+			var updatedLibraryTv = state.libraryArray.filter(m => m.id !== payload.id);
 			localStorage.removeItem('my-library');
-			setItemToLocalStorage('my-library', updatedLibrary);
+			setItemToLocalStorage('my-library', updatedLibraryTv);
 			return {
 				...state,
 				libraryArray: updatedLibrary
-			}
+			};
 		default:
 			return state;
 	}

@@ -2,7 +2,7 @@ import { TOGGLE_SIDEBAR } from '../../constants';
 
 const initialState = {
 	isSidebarOpen: true
-}
+};
 
 export function sidebarReducer(state = initialState, { type }) {
 	switch (type) {
@@ -10,8 +10,8 @@ export function sidebarReducer(state = initialState, { type }) {
 			return {
 				state,
 				isSidebarOpen: !state.isSidebarOpen
-			}
+			};
 		default:
 			return state;
 	}
-} 
+}

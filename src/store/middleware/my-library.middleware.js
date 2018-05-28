@@ -55,4 +55,4 @@ export const myLibraryMiddleware = store => next => action => {
 	}
 
 	return next(action);
-}
+};

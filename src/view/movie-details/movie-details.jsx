@@ -7,12 +7,12 @@ import { getItemFromLocalStorage } from '../../services';
 
 export class MovieDetails extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			genresFromLS: getItemFromLocalStorage('genres'),
 			movie: {},
 			recommended: []
-		}
+		};
 	}
 
 	initMovieAndRecommended(id) {
@@ -58,15 +58,15 @@ const mapStateToProps = (state) => {
 	return {
 		movies: state.moviesReducer.movies,
 		genres: state.genresReducer.genres
-	}
-}
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchMovies: () => {
 			dispatch(fetchMovies());
 		}
-	}
-}
+	};
+};
 
 export const MovieDetailsPage = connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

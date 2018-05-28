@@ -85,15 +85,15 @@ export const SidebarComponent = ({ isSidebarOpen, toggleSidebar }) => {
 const mapStatetoProps = (state) => {
 	return {
 		isSidebarOpen: state.sidebarReducer.isSidebarOpen
-	}
-}
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		toggleSidebar: () => {
 			dispatch(toggleSidebar());
 		}
-	}
-}
+	};
+};
 
 export const Sidebar = withRouter(connect(mapStatetoProps, mapDispatchToProps)(SidebarComponent));

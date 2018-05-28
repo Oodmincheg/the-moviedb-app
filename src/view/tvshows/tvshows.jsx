@@ -33,9 +33,9 @@ class TvShows extends Component {
     const { tvShows, isLoaded, isSidebarOpen } = this.props;
     let filteredTvShows = tvShows.filter((tvShow) => {
       return tvShow.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    })
+    });
     if (!isLoaded) {
-      return <Preloader className='mdb-spinner' />
+      return <Preloader className='mdb-spinner' />;
     } else {
       return (
         <div className='mdb-movies'>
@@ -80,8 +80,8 @@ const mapStateToProps = (state) => {
     isLoaded: state.tvShowsReducer.isLoaded,
     myLibrary: state.libraryReducer.libraryArray,
     isSidebarOpen: state.sidebarReducer.isSidebarOpen
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -97,8 +97,8 @@ const mapDispatchToProps = (dispatch) => {
     removeItemFromLibrary: (item) => {
       dispatch(removeTvShowFromLibrary(item));
     }
-  }
-}
+  };
+};
 
 export const TvShowsList = connect(
   mapStateToProps,

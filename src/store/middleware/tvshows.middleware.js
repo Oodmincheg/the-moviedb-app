@@ -26,7 +26,7 @@ export const tvShowsMiddleware = store => next => action => {
 					if (customTvShows) {
 						data = tvShows.concat(customTvShows);
 					}
-					setItemToLocalStorage('tvShows', data)
+					setItemToLocalStorage('tvShows', data);
 					store.dispatch({
 						type: FETCH_TVSHOWS_SUCCESS,
 						payload: data
@@ -37,7 +37,7 @@ export const tvShowsMiddleware = store => next => action => {
 					type: FETCH_TVSHOWS_FAILURE,
 					payload: err,
 					error: true
-				})
+				});
 			}
 		} else {
 			let showsLS = getItemFromLocalStorage('tvShows');
@@ -50,4 +50,4 @@ export const tvShowsMiddleware = store => next => action => {
 		}
 	}
 	return next(action);
-}
+};

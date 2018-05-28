@@ -27,11 +27,11 @@ export function configureStore(initialState) {
 			myLibraryMiddleware
 		)
 		),
-		(localStorage['redux-store']) ?
+		localStorage['redux-store'] ?
 			JSON.parse(localStorage['redux-store']) :
-			{})
+			{});
 	store.subscribe(() => {
-		localStorage['redux-store'] = JSON.stringify(store.getState())
+		localStorage['redux-store'] = JSON.stringify(store.getState());
 	}
 	);
 	return store;

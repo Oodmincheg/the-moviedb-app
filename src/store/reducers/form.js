@@ -6,7 +6,7 @@ import {
 
 const initialState = {
 	isFormOpen: false
-}
+};
 
 export function formReducer(state = initialState, { type }) {
 	switch (type) {
@@ -28,4 +28,4 @@ export function formReducer(state = initialState, { type }) {
 		default:
 			return state;
 	}
-} 
+}

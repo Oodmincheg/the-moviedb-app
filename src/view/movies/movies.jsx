@@ -35,13 +35,13 @@ class Movies extends Component {
       return movie.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
     });
     if (!isLoaded) {
-      return <Preloader className='mdb-spinner' />
+      return <Preloader className='mdb-spinner' />;
     } else {
       return (
         <div className='mdb-movies'>
-          <div className={isSidebarOpen ?  'mdb-movies__wrapper' : 'mdb-movies__wrapper mdb-movies__wrapper--wider'}>
+          <div className={isSidebarOpen ? 'mdb-movies__wrapper' : 'mdb-movies__wrapper mdb-movies__wrapper--wider'}>
             <div
-              className='mdb-movies__search' 
+              className='mdb-movies__search'
               onChange={this.handleSearch.bind(this)}
             >
               <Search />
@@ -81,8 +81,8 @@ const mapStateToProps = (state) => {
     isLoaded: state.moviesReducer.isLoaded,
     myLibrary: state.libraryReducer.libraryArray,
     isSidebarOpen: state.sidebarReducer.isSidebarOpen
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -96,10 +96,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(addMovieToLibrary(item));
     },
     removeItemFromLibrary: (item) => {
-      dispatch(removeMovieFromLibrary(item))
+      dispatch(removeMovieFromLibrary(item));
     }
-  }
-}
+  };
+};
 
 export const MovieList = connect(
   mapStateToProps,

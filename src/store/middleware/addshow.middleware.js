@@ -21,4 +21,4 @@ export const addTvShowMiddleware = store => next => action => {
 		});
 	}
 	return next(action);
-}
+};

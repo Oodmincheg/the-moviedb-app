@@ -2,7 +2,7 @@ import { GET_GENRES_SUCCESS } from '../../constants';
 
 const initialState = {
 	genres: []
-}
+};
 
 export function genresReducer(state = initialState, { type, payload }) {
 	switch (type) {
@@ -10,7 +10,7 @@ export function genresReducer(state = initialState, { type, payload }) {
 			return {
 				...state,
 				genres: payload
-			}
+			};
 		default:
 			return state;
 	}

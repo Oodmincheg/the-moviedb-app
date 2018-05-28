@@ -42,4 +42,4 @@ export const genresMiddleware = store => next => action => {
 		}
 	}
 	return next(action);
-}
+};

@@ -7,7 +7,8 @@ export const Textarea = ({
     label,
     onChange,
     name
-}) => (
+}) => {
+    return (
         <div className={classNameForWrapper}>
             <label>{label}</label>
             <textarea
@@ -16,4 +17,6 @@ export const Textarea = ({
                 onChange={onChange}
             ></textarea>
         </div>
-    )
+    );
+};
+

@@ -8,7 +8,8 @@ export const Button = ({
     label,
     disabled,
     onClick
-}) => (
+}) => {
+    return (
         <button
             type={type}
             className={`${className} ${modifier}`}
@@ -18,3 +19,4 @@ export const Button = ({
             {label}
         </button>
     );
+};

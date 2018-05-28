@@ -49,13 +49,13 @@ class Genres extends Component {
 const mapStateToProps = (state) => {
 	return {
 		genres: state.genresReducer.genres
-	}
-}
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		getGenres: bindActionCreators(getGenres, dispatch)
-	}
-}
+	};
+};
 
 export const GenresList = connect(mapStateToProps, mapDispatchToProps)(Genres);

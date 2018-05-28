@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input } from '../controls/input';
 import { Button } from '../controls/button';
@@ -10,7 +10,7 @@ import './add-movie.css';
 
 class AddMovie extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.defaultPoster = '../../assets/default_poster.jpg';
 		this.loadInView = this.loadInView.bind(this);
 		this.checkValidation = this.checkValidation.bind(this);
@@ -58,7 +58,7 @@ class AddMovie extends Component {
 	}
 
 	onAdultChage(e) {
-		this.setState({ adult: e.target.checked })
+		this.setState({ adult: e.target.checked });
 	}
 
 	uploadPoster() {
@@ -95,7 +95,7 @@ class AddMovie extends Component {
 			adult: this.state.adult,
 			id: this.state.id,
 			poster: this.state.poster
-		}
+		};
 		if (this.props.addCustomMovie) {
 			this.props.addCustomMovie(item);
 			this.props.closeForm();
@@ -109,7 +109,7 @@ class AddMovie extends Component {
 			this.setState(() => ({
 				poster: elem.src
 			}));
-		}
+		};
 		fileReader.readAsDataURL(file);
 	}
 
@@ -171,7 +171,7 @@ class AddMovie extends Component {
 							<div
 								className='mdb-container-form__drop-files'
 								draggable='true'
-								ref={div => { this.dropzone = div }}
+								ref={div => { this.dropzone = div; }}
 							>
 								<i className="fa fa-upload fa-2x"></i>
 								Upload Posters
@@ -186,7 +186,7 @@ class AddMovie extends Component {
 								'mdb-container-form__droped mdb-container-form__droped--scroll'}
 							>
 								<img src='' alt='' className='mdb-container-form__dropped-image'
-									ref={img => { this.dropped = img }} />
+									ref={img => { this.dropped = img; }} />
 							</div>
 							<div className='mdb-container-form__buttons-wrapper'>
 								<Button
@@ -215,14 +215,14 @@ class AddMovie extends Component {
 const mapStateToProps = (state) => {
 	return {
 		isOpened: state.formReducer.isFormOpen
-	}
-}
+	};
+};
 
 const mapDispatchToProps = (dispatch) => ({
 	closeForm: (e) => {
-		dispatch(closeForm())
+		dispatch(closeForm());
 		e.preventDefault();
 	}
-})
+});
 
 export const AddMovieForm = connect(mapStateToProps, mapDispatchToProps)(AddMovie);

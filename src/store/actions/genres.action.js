@@ -5,5 +5,5 @@ import {
 export function getGenres() {
 	return {
 		type: GET_GENRES
-	}
+	};
 }

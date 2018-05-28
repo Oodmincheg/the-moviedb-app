@@ -12,7 +12,7 @@ import './my-library.css';
 
 export class MyLibrary extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.props.initializeMyLibrary();
   }
 
@@ -25,13 +25,13 @@ export class MyLibrary extends Component {
     } else {
       return (
         <div className='mdb-library'>
-          <div className={isSidebarOpen ?'mdb-library__view':'mdb-library__view mdb-library__view--wider'}>
+          <div className={isSidebarOpen ? 'mdb-library__view' : 'mdb-library__view mdb-library__view--wider'}>
             {myLibrary.map(m => {
               let linkTo;
               if (m.type === 'movie') {
-                linkTo = `/movies/${m.id}`
+                linkTo = `/movies/${m.id}`;
               } else {
-                linkTo = `tvshows/${m.id}`
+                linkTo = `tvshows/${m.id}`;
               }
               return (
                 <Link
@@ -59,14 +59,14 @@ export class MyLibrary extends Component {
     }
 
   }
-};
+}
 
 export const mapStateToProps = (state) => {
   return {
     myLibrary: state.libraryReducer.libraryArray,
     isSidebarOpen: state.sidebarReducer.isSidebarOpen
-  }
-}
+  };
+};
 
 export const mapDispatchToProps = (dispatch) => {
   return {
@@ -79,7 +79,7 @@ export const mapDispatchToProps = (dispatch) => {
     removeTvShowFromLibrary: (item) => {
       dispatch(removeTvShowFromLibrary(item));
     }
-  }
-}
+  };
+};
 
 export const Library = connect(mapStateToProps, mapDispatchToProps)(MyLibrary);

@@ -6,7 +6,7 @@ import {
 const initialState = {
 	movies: [],
 	isLoaded: false
-}
+};
 
 export function moviesReducer(state = initialState, { type, payload }) {
 	switch (type) {
@@ -15,12 +15,12 @@ export function moviesReducer(state = initialState, { type, payload }) {
 				...state,
 				movies: payload,
 				isLoaded: true
-			}
+			};
 		case ADD_CUSTOM_MOVIE:
 			return {
 				...state,
 				movies: [...state.movies, payload]
-			}
+			};
 		default:
 			return state;
 	}

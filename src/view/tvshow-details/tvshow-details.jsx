@@ -7,13 +7,12 @@ import './tvshowdetail.scss';
 
 export class TvShowDetails extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			genresFromLS: getItemFromLocalStorage('genres'),
 			tvShow: {},
 			recommended: []
-		}
-
+		};
 	}
 
 	initTvShowAndRecommended(id) {
@@ -58,15 +57,15 @@ export class TvShowDetails extends Component {
 const mapStateToProps = (state) => {
 	return {
 		tvShows: state.tvShowsReducer.tvShows
-	}
-}
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchTvShows: () => {
 			dispatch(fetchTvShows());
 		}
-	}
-}
+	};
+};
 
 export const TvShowDetailsPage = connect(mapStateToProps, mapDispatchToProps)(TvShowDetails);

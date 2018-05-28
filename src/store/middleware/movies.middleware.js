@@ -37,7 +37,7 @@ export const moviesMiddleware = store => next => action => {
 					type: FETCH_MOVIES_FAILURE,
 					payload: err,
 					error: true
-				})
+				});
 			}
 
 		} else {
@@ -51,4 +51,4 @@ export const moviesMiddleware = store => next => action => {
 		}
 	}
 	return next(action);
-}
+};

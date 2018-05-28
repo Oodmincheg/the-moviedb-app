@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MovieList } from './view/movies'
+import { MovieList } from './view/movies';
 import { Sidebar } from './components/sidebar';
 import { TopNavigation } from './components/top-navigation';
 import { TvShowsList } from './view/tvshows';

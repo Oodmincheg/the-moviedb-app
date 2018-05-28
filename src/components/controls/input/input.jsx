@@ -8,7 +8,8 @@ export const Input = ({
     label,
     onChange,
     name
-}) => (
+}) => {
+    return (
         <div className={classNameForWrapper}>
             <label>{label}</label>
             <input
@@ -19,3 +20,4 @@ export const Input = ({
             />
         </div>
     );
+};

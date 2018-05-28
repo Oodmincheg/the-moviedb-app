@@ -27,6 +27,7 @@
 }
 
 .mdb-poster__button {
+    height: 25px;
     margin: 5px 5px 2px 8px;
     font-size: 1.1em;
     cursor: pointer;
