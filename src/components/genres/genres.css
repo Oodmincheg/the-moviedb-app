@@ -1,17 +1,21 @@
-.mdb-container-form__genres-list {
+.mdb-genres__list {
     display: flex;
     flex-flow: column wrap;
-    /* width: 200px; */
+    width: 400px;
+    font-size: 0.6em;
+    color: gray;
+    border: 2px solid gray;
+    border-radius: 5px;
     height: 150px;
     /* padding: 0 0 0 20px; */
     list-style: none;
 }
 
-.mdb-container-form__genres-item {
-    /* margin-left: 20px; */
+.mdb-genres__item {
+    color: white;
     padding-top: 10px;
 }
 
-.mdb-container-form__check-genre {
+.mdb-genres__check-area {
     margin-right: 5px;
 }

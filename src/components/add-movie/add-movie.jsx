@@ -149,7 +149,7 @@ class AddMovie extends Component {
 						</div>
 						<div className='mdb-container-form__checkbox-wrapper'>
 							<label>Genres</label>
-							<div className='mdb-container-form__genres'>
+							<div className='mdb-genres'>
 								<GenresList
 									onClickHandler={this.handleGenreChange.bind(this)}
 								/>

@@ -12,24 +12,31 @@ class Genres extends Component {
 
 	render() {
 		let key = 0;
-		const { genres } = this.props;
+		const { genres, compareGenres, disabled } = this.props;
 		return (
 			<div
-				className='mdb-container-form__genres-list'
+				className='mdb-genres__list'
 				onClick={this.props.onClickHandler}
 			>
 				{genres.map(genre =>
 					<div
-						className='mdb-container-form__genres-item'
+						className='mdb-genres__item'
 						key={key++}
 					>
 						<input
-							className='mdb-container-form__check-genre'
+							className='mdb-genres__check-area'
 							type='checkbox'
 							key={genre.id}
 							name='genre'
 							value={genre.name}
 							onChange={this.props.onChange}
+							checked={compareGenres &&
+								compareGenres.map((item) => {
+									return item === genre.name;
+								}).includes(true)
+							}
+							readOnly={true}
+							disabled={disabled}
 						/>
 						<label key={genre.name}>{genre.name}</label>
 					</div>

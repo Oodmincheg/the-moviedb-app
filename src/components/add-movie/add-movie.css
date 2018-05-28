@@ -4,7 +4,6 @@
 
 .mdb-container-form__wrapper {
     display: none;
-    margin-left: 360px;
     padding-left: 30px;
     color: gray;
 }
@@ -31,13 +30,6 @@
     /* height: 200px;
     width: 150px;  
 } */
-
-.mdb-container-form__genres {
-    font-size: 15px;
-    width: 400px;
-    border: 2px solid gray;
-    border-radius: 5px;
-}
 
 .mdb-container-form__checkbox-adult {
     margin: 10px 0 0 5px;
@@ -92,6 +84,6 @@
 
 @media screen and (min-width: 1920px) {
     .mdb-container-form__wrapper {
-        width: 75%;
+        width: 85%;
     }
 }
