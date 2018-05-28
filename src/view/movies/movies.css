@@ -23,6 +23,12 @@
     margin: 10px 0 0 15px;
 }
 
+@media screen and (min-width: 1920px) {
+    .mdb-movies__inner {
+        margin-right: 5px;
+    }
+}
+
 /* .mdb-container-movies__title:hover {
     background-color: #14728C;
     opacity: 0.5;
