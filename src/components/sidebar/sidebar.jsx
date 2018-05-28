@@ -1,5 +1,4 @@
 import React from 'react';
-import { sidebarNavigation } from '../../data'
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleSidebar } from '../../store/actions';
