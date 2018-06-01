@@ -1,6 +1,7 @@
 import {
 	FETCH_TVSHOWS_START,
-	ADD_CUSTOM_TVSHOW
+	ADD_CUSTOM_TVSHOW,
+	GET_SIMILAR_TVSHOWS_START
 } from '../../constants';
 
 export function fetchTvShows() {
@@ -12,6 +13,13 @@ export function fetchTvShows() {
 export function addCustomTvshow(payload) {
 	return {
 		type: ADD_CUSTOM_TVSHOW,
+		payload
+	};
+}
+
+export function fetchSimilarTvShows(payload) {
+	return {
+		type: GET_SIMILAR_TVSHOWS_START,
 		payload
 	};
 }
