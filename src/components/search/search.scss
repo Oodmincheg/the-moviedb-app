@@ -1,0 +1,19 @@
+.mdb-movies__search {
+  position: relative;
+  height: 50px;
+  width: 200px;
+  height: 26px;;
+  .mdb-form__search-button {
+    width: 28px;
+    height: 26px;
+    position: absolute;
+    cursor: pointer;
+    right: 0px;
+    top: 3.5px;
+  }
+}
+
+.mdb-movies__search-input {
+  width: 200px;
+  height: 26px;
+}
