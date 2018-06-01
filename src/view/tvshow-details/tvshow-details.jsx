@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchTvShows } from '../../store/actions';
+import {
+	fetchTvShows,
+	fetchSimilarTvShows,
+	initializeMyLibrary
+} from '../../store/actions';
 import { getItemFromLocalStorage } from '../../services';
 import { GenresList } from '../../components/genres';
+import { Recommendation } from '../../components/recommendation';
 import './tvshowdetail.scss';
 
 export class TvShowDetails extends Component {
@@ -10,25 +15,34 @@ export class TvShowDetails extends Component {
 		super(props);
 		this.state = {
 			genresFromLS: getItemFromLocalStorage('genres'),
-			tvShow: {},
-			recommended: []
+			tvShow: {}
 		};
+		this.props.initializeMyLibrary();
 	}
 
-	initTvShowAndRecommended(id) {
-		let tvShows = getItemFromLocalStorage('tvShows').filter(tvshow => tvshow.id === parseInt(id, 10));
+	initTvShow(id) {
+		let tvShows = getItemFromLocalStorage('fulltvshows').filter(tvshow => tvshow.id === parseInt(id, 10));
 		this.setState(() => ({
 			tvShow: tvShows[0]
 		}));
 	}
 
+	componentDidMount() {
+		this.props.fetchSimilarTvShows(this.props.match.params.id);
+	}
+
 	componentWillMount() {
-		this.initTvShowAndRecommended(this.props.match.params.id);
+		this.initTvShow(this.props.match.params.id);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.initTvShow(nextProps.match.params.id);
 	}
 
 	render() {
 		const tvShow = this.state.tvShow;
 		let genres = this.state.genresFromLS.filter(genre => tvShow.genre_ids.includes(genre.id));
+		const { similarTvShows } = this.props;
 		return (
 			<div className='mdb-details__view'>
 				<div className='mdb-details__wrapper'>
@@ -48,6 +62,8 @@ export class TvShowDetails extends Component {
 					</div>
 					<p>Genre</p>
 					<GenresList compareGenres={genres.map(genre => genre.name)} />
+					<h3 className='mdb-details__recommended-title'>We also recommended</h3>
+					<Recommendation items={similarTvShows} />
 				</div>
 			</div>
 		);
@@ -56,7 +72,8 @@ export class TvShowDetails extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		tvShows: state.tvShowsReducer.tvShows
+		tvShows: state.tvShowsReducer.tvShows,
+		similarTvShows: state.tvShowsReducer.similarTvShows
 	};
 };
 
@@ -64,6 +81,12 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchTvShows: () => {
 			dispatch(fetchTvShows());
+		},
+		fetchSimilarTvShows: (id) => {
+			dispatch(fetchSimilarTvShows(id));
+		},
+		initializeMyLibrary: () => {
+			dispatch(initializeMyLibrary());
 		}
 	};
 };
