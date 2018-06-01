@@ -2,13 +2,17 @@ import {
 	FETCH_TVSHOWS_START,
 	FETCH_TVSHOWS_SUCCESS,
 	FETCH_TVSHOWS_FAILURE,
-	popularTvShows
+	popularTvShows,
+	GET_SIMILAR_TVSHOWS_START,
+	GET_SIMILAR_TVSHOWS_SUCCESS,
+	GET_SIMILAR_TVSHOWS_FAILURE
 } from '../../constants';
 import {
 	getData,
 	TvShowEntity,
 	getItemFromLocalStorage,
-	setItemToLocalStorage
+	setItemToLocalStorage,
+	getSimilarTvShows
 } from '../../services';
 
 export const tvShowsMiddleware = store => next => action => {
@@ -19,7 +23,7 @@ export const tvShowsMiddleware = store => next => action => {
 				getData(popularTvShows).then((result) => {
 					let arr = result;
 					let tvShows = arr.map((item) => {
-						return new TvShowEntity(item);
+						return new TvShowEntity(item); //mapping
 					});
 					let data = tvShows;
 					let customTvShows = getItemFromLocalStorage('addedTvShows');
@@ -46,6 +50,29 @@ export const tvShowsMiddleware = store => next => action => {
 			store.dispatch({
 				type: FETCH_TVSHOWS_SUCCESS,
 				payload: tvShows
+			});
+		}
+	}
+
+	if (action.type === GET_SIMILAR_TVSHOWS_START) {
+		try {
+			getSimilarTvShows(action.payload).then((result) => {
+				let resultArr = result;
+				let similarTvShows = resultArr.map((item) => {
+					return new TvShowEntity(item);
+				});
+				store.dispatch({
+					type: GET_SIMILAR_TVSHOWS_SUCCESS,
+					payload: similarTvShows
+				});
+				let initialTvShows = getItemFromLocalStorage('tvShows');
+				let fullTvShows = [...initialTvShows, ...similarTvShows];
+				setItemToLocalStorage('fulltvshows', fullTvShows);
+			});
+		} catch (err) {
+			store.dispatch({
+				type: GET_SIMILAR_TVSHOWS_FAILURE,
+				payload: err
 			});
 		}
 	}
