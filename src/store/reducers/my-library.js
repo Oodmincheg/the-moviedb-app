@@ -5,7 +5,10 @@ import {
 	REMOVE_TVSHOW_FROM_LIBRARY,
 	INITIALIZE_MY_LIBRARY
 } from '../../constants';
-import { setItemToLocalStorage, getItemFromLocalStorage } from '../../services/localStorage.service';
+import {
+	setItemToLocalStorage,
+	getItemFromLocalStorage
+} from '../../services/localStorage.service';
 
 const initialState = {
 	libraryArray: []
@@ -54,7 +57,7 @@ export function libraryReducer(state = initialState, { type, payload }) {
 			setItemToLocalStorage('my-library', updatedLibraryTv);
 			return {
 				...state,
-				libraryArray: updatedLibrary
+				libraryArray: updatedLibraryTv
 			};
 		default:
 			return state;
