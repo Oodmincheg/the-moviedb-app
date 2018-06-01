@@ -1,13 +1,14 @@
-.mdb-container-movies__search {
+.mdb-movies__search {
+    position: relative;
     height: 50px;
 }
 
-.mdb-container-movies__search-input {
-    height: 25px;
+.mdb-movies__search-input {
+    height: 26px;
 }
 
-.mdb-container-form__search-button {
-    width: 30px;
+.mdb-form__search-button {
+    width: 28px;
     height: 26px;
     cursor: pointer;
 }
