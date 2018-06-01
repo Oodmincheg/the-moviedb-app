@@ -3,8 +3,9 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleSidebar } from '../../store/actions';
 import './sidebar.css';
+import { getItemFromLocalStorage } from '../../services';
 
-export const SidebarComponent = ({ isSidebarOpen, toggleSidebar }) => {
+export const SidebarComponent = ({ isSidebarOpen, toggleSidebar, myLibrary }) => {
 	return (
 		<div className='mdb-sidebar'>
 			<div
@@ -62,7 +63,14 @@ export const SidebarComponent = ({ isSidebarOpen, toggleSidebar }) => {
 						<span className={isSidebarOpen ?
 							'mdb-sidebar__link-to' :
 							'mdb-sidebar__link-to hide-items'
-						}>My Library</span>
+						}>My Library
+						{myLibrary.length > 0 ?
+								<span className='mdb-sidebar__counter'>
+									({myLibrary.length})
+								</span> :
+								''
+							}
+						</span>
 					</NavLink>
 					<NavLink
 						href='#'
@@ -84,7 +92,8 @@ export const SidebarComponent = ({ isSidebarOpen, toggleSidebar }) => {
 
 const mapStatetoProps = (state) => {
 	return {
-		isSidebarOpen: state.sidebarReducer.isSidebarOpen
+		isSidebarOpen: state.sidebarReducer.isSidebarOpen,
+		myLibrary: state.libraryReducer.libraryArray
 	};
 };
 
