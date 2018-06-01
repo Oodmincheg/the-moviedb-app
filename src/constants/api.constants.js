@@ -3,3 +3,11 @@ export const popularMovies = `https://api.themoviedb.org/3/movie/popular?api_key
 export const popularTvShows = `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=en-US&page=1`;
 export const genresData = 'http://www.mocky.io/v2/5adafff929000053003e3d37';
 export const genresFromTMDB = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
+
+export const similarMovies = (movie_id) => {
+ return `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${apiKey}&language=en-US&page=1`;
+};
+
+export const similarTvShows = (tv_id) => {
+  return `https://api.themoviedb.org/3/tv/${tv_id}/similar?api_key=${apiKey}&language=en-US&page=1`;
+};
