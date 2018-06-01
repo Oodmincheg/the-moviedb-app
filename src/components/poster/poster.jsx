@@ -1,5 +1,5 @@
 import React from 'react';
-import './poster.css';
+import './poster.scss';
 
 const classNames = {
 	view: 'mdb-poster__view',
@@ -12,6 +12,8 @@ const classNames = {
 
 export const Poster = ({
 	style,
+	width,
+	height,
 	alt,
 	item,
 	addItemToLibrary,
@@ -33,7 +35,7 @@ export const Poster = ({
 		<div className='mdb-poster'>
 			<div
 				className={item.isInLibrary ? classNames.selected : classNames.view}
-				style={{ background: `url(${style})` }}
+				style={{ background: `url(${style})`, width: `${width}`, height: `${height}` }}
 				alt={alt}
 			>
 				<div className='mdb-poster__buttons'>
@@ -52,8 +54,8 @@ export const Poster = ({
 								title='Add to library'
 							></i>
 					}
+					<div className='mdb-poster__children'>{children}</div>
 				</div>
-				{children}
 			</div>
 		</div>
 	);

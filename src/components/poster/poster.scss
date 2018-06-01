@@ -1,0 +1,40 @@
+.mdb-poster__view {
+  position: relative;
+  width: 185px;
+  height: 278px;
+  margin: 10px 0 0 10px;
+}
+
+.mdb-poster__view--selected {
+  border: 1px solid green;
+}
+
+.mdb-poster__buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  visibility: hidden;
+  .mdb-poster__button {
+    height: 25px;
+    margin: 5px 5px 2px 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: #FD394B;
+  }
+  .mdb-poster__button--save {
+    color: #71C71A;
+  }
+}
+
+.mdb-poster__buttons:hover {
+  background: #14728C;
+  opacity: 0.6;
+}
+
+.mdb-poster__view:hover {
+  .mdb-poster__buttons{
+    visibility: visible;
+  }
+}
