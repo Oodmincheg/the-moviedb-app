@@ -22,8 +22,8 @@ export class App extends Component {
             <Route exact path='/movies' component={MovieList} />
             <Route exact path='/tvshows' component={TvShowsList} />
             <Route exact path='/library' component={Library} />
-            <Route path='/movies/:id' component={MovieDetailsPage} />
-            <Route path='/tvshows/:id' component={TvShowDetailsPage} />
+            <Route exact path='/movies/:id' component={MovieDetailsPage} />
+            <Route exact path='/tvshows/:id' component={TvShowDetailsPage} />
           </Switch>
         </div>
       </Router>
