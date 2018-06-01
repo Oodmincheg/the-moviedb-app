@@ -13,6 +13,8 @@ export const addMovieMiddleware = store => next => action => {
 		let movies = getItemFromLocalStorage('movies');
 		action.payload.movie = true;
 		addedMovies.push(action.payload);
+
+		//saving all movies after adding custom one
 		let updatedMovies = movies.concat(addedMovies);
 		setItemToLocalStorage('movies', updatedMovies);
 		setItemToLocalStorage('addedMovies', addedMovies);

@@ -13,6 +13,8 @@ export const addTvShowMiddleware = store => next => action => {
 		let tvShows = getItemFromLocalStorage('tvShows');
 		action.payload.tvShow = true;
 		addedTvShows.push(action.payload);
+
+		//saving all tvshows after adding custom one
 		let updatedTvShows = tvShows.concat(addedTvShows);
 		setItemToLocalStorage('tvShows', updatedTvShows);
 		setItemToLocalStorage('addedTvShows', addedTvShows);
