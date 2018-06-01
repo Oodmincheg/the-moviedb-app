@@ -8,7 +8,8 @@ import {
   addCustomMovie,
   fetchMovies,
   addMovieToLibrary,
-  removeMovieFromLibrary
+  removeMovieFromLibrary,
+  initializeMyLibrary
 } from '../../store/actions';
 import { Link } from 'react-router-dom';
 import './movies.css';
@@ -19,6 +20,7 @@ class Movies extends Component {
     this.state = {
       search: ''
     };
+    this.props.initializeMyLibrary();
   }
 
   componentDidMount() {
@@ -63,7 +65,6 @@ class Movies extends Component {
                     addItemToLibrary={this.props.addItemToLibrary}
                     removeItemFromLibrary={this.props.removeItemFromLibrary}
                   >
-                    {/* <div className='mdb-container-movies__title'>{movie.title}</div> */}
                   </Poster>
                 </Link>
               )}
@@ -97,11 +98,11 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeItemFromLibrary: (item) => {
       dispatch(removeMovieFromLibrary(item));
+    },
+    initializeMyLibrary: () => {
+      dispatch(initializeMyLibrary());
     }
   };
 };
 
-export const MovieList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Movies);
+export const MovieList = connect(mapStateToProps, mapDispatchToProps)(Movies);

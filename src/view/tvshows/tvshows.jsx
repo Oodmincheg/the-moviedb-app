@@ -9,7 +9,8 @@ import {
   addCustomTvshow,
   fetchTvShows,
   addTvShowToLibrary,
-  removeTvShowFromLibrary
+  removeTvShowFromLibrary,
+  initializeMyLibrary
 } from '../../store/actions';
 import '../movies/movies.css';
 
@@ -19,6 +20,7 @@ class TvShows extends Component {
     this.state = {
       search: ''
     };
+    this.props.initializeMyLibrary();
   }
 
   componentDidMount() {
@@ -96,11 +98,11 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeItemFromLibrary: (item) => {
       dispatch(removeTvShowFromLibrary(item));
+    },
+    initializeMyLibrary: () => {
+      dispatch(initializeMyLibrary());
     }
   };
 };
 
-export const TvShowsList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TvShows);
+export const TvShowsList = connect(mapStateToProps, mapDispatchToProps)(TvShows);
