@@ -1,34 +1,52 @@
 import React, { Component } from 'react';
 import './movie-details.css';
 import { connect } from 'react-redux';
-import { fetchMovies } from '../../store/actions';
+import {
+	fetchMovies,
+	fetchSimilarMovies,
+	initializeMyLibrary
+} from '../../store/actions';
 import { GenresList } from '../../components/genres';
-import { getItemFromLocalStorage } from '../../services';
+import { getItemFromLocalStorage, setItemToLocalStorage } from '../../services';
+import { Recommendation } from '../../components/recommendation';
 
 export class MovieDetails extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			genresFromLS: getItemFromLocalStorage('genres'),
-			movie: {},
-			recommended: []
+			movie: {}
 		};
+		this.props.initializeMyLibrary();
 	}
 
-	initMovieAndRecommended(id) {
-		let movies = getItemFromLocalStorage('movies').filter(movie => movie.id === parseInt(id, 10));
-		this.setState(() => ({
-			movie: movies[0]
-		}));
+	initMovie(id) {
+		let currentMoviee = getItemFromLocalStorage('fullmovies').filter(movie => movie.id === parseInt(id, 10));
+		this.setState({
+			movie: currentMoviee
+		});
+		setItemToLocalStorage('currentmovie', currentMoviee);
 	}
 
 	componentWillMount() {
-		this.initMovieAndRecommended(this.props.match.params.id);
+		this.initMovie(this.props.match.params.id);
+	}
+
+	componentDidMount() {
+		this.props.getSimilarMovies(this.props.match.params.id);
+	}
+
+	//refreshing movie info after click on recommended movie
+	componentWillReceiveProps(nextProps) {
+		this.initMovie(nextProps.match.params.id);
 	}
 
 	render() {
 		let movie = this.state.movie;
+
+		//filter genres of current movie
 		let genres = this.state.genresFromLS.filter(genre => movie.genre_ids.includes(genre.id));
+		const { similarMovies } = this.props;
 		return (
 			<div className='mdb-details__view'>
 				<div className='mdb-details__wrapper'>
@@ -48,7 +66,11 @@ export class MovieDetails extends Component {
 					</div>
 					<p>Genre</p>
 					<GenresList compareGenres={genres.map(genre => genre.name)} />
+					<h3 className='mdb-details__recommended-title'>We also recommended</h3>
+					<Recommendation items={similarMovies}
+					/>
 				</div>
+
 			</div>
 		);
 	}
@@ -57,7 +79,8 @@ export class MovieDetails extends Component {
 const mapStateToProps = (state) => {
 	return {
 		movies: state.moviesReducer.movies,
-		genres: state.genresReducer.genres
+		genres: state.genresReducer.genres,
+		similarMovies: state.moviesReducer.similarMovies
 	};
 };
 
@@ -65,6 +88,12 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchMovies: () => {
 			dispatch(fetchMovies());
+		},
+		getSimilarMovies: (id) => {
+			dispatch(fetchSimilarMovies(id));
+		},
+		initializeMyLibrary: () => {
+			dispatch(initializeMyLibrary());
 		}
 	};
 };
