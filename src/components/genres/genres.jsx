@@ -54,7 +54,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getGenres: bindActionCreators(getGenres, dispatch)
+		getGenres: () =>{
+			dispatch(getGenres());
+		}
 	};
 };
 
