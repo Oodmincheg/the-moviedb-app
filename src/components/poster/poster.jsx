@@ -9,7 +9,6 @@ const classNames = {
 	info: 'fas fa-info mdb-poster__button'
 };
 
-
 export const Poster = ({
 	style,
 	width,
@@ -20,6 +19,13 @@ export const Poster = ({
 	removeItemFromLibrary,
 	children
 }) => {
+
+	let posterStyle = {
+		background: `url(${style})`,
+		width: `${width}`,
+		height: `${height}`,
+		backgroundSize: 'cover'
+	};
 
 	function addItem(e) {
 		e.preventDefault();
@@ -35,7 +41,7 @@ export const Poster = ({
 		<div className='mdb-poster'>
 			<div
 				className={item.isInLibrary ? classNames.selected : classNames.view}
-				style={{ background: `url(${style})`, width: `${width}`, height: `${height}` }}
+				style={posterStyle}
 				alt={alt}
 			>
 				<div className='mdb-poster__buttons'>

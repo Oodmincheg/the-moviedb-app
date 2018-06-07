@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Poster } from '../poster';
 import { Link } from 'react-router-dom';
-import {withRouter} from 'react-router-dom';
 import './recommendation.scss';
 
 export class Recommendation extends Component {
