@@ -39,7 +39,9 @@ export const Poster = ({
 				alt={alt}
 			>
 				<div className='mdb-poster__buttons'>
-					<i className={classNames.info}></i>
+					<i className={classNames.info}>
+						<span className='mdb-poster__info'>{item.overview}</span>
+					</i>
 					{
 						item.isInLibrary ?
 							<i

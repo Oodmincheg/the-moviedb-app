@@ -6,7 +6,7 @@
 }
 
 .mdb-poster__view--selected {
-  border: 1px solid green;
+  border: 1px solid #2ECC71;
 }
 
 .mdb-poster__buttons {
@@ -19,7 +19,7 @@
   .mdb-poster__button {
     height: 25px;
     margin: 5px 5px 2px 8px;
-    font-size: 1.1em;
+    font-size: 1.8rem;
     cursor: pointer;
     color: #FD394B;
   }
@@ -34,7 +34,35 @@
 }
 
 .mdb-poster__view:hover {
-  .mdb-poster__buttons{
+  .mdb-poster__buttons {
     visibility: visible;
   }
+}
+
+.mdb-poster__info {
+width: 200px; 
+padding: 7px 10px; 
+margin-top: 25px; 
+opacity: 1; 
+visibility: hidden; 
+z-index: 10; 
+position: absolute; 
+display: none; 
+margin-left: -200px;
+}
+
+.fa-info:hover span {
+  color: #000000; 
+  border: 1px solid #000000; 
+  background: rgb(124, 77, 80);
+  display: inline; 
+  font-size: 0.6em;
+  font-weight: bold;
+  color: white;
+}
+
+.fa-info:hover > span {
+  opacity: 1;
+  visibility: visible;
+  overflow: visible;
 }
