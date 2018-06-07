@@ -1,9 +1,13 @@
 .mdb-poster__view {
   position: relative;
-  width: 185px;
-  height: 278px;
-  margin: 10px 0 0 10px;
+  width: 160px;
+  height: 240px;
+  margin: 0 0 40px 40px;
   border-radius: 1rem;
+  box-shadow:
+  inset rgb(0, 0, 0) 0 -3px 8px,
+  inset rgba(252, 255, 255, 0.164) 0 3px 8px,
+  rgba(0,0,0,.8) 0 3px 8px -3px;
 }
 
 .mdb-poster__view--selected {
@@ -15,7 +19,6 @@
   justify-content: flex-end;
   width: 100%;
   height: 100%;
-  border: 1px solid black;
   visibility: hidden;
   .mdb-poster__button {
     height: 25px;
@@ -30,6 +33,7 @@
 }
 
 .mdb-poster__buttons:hover {
+  border-radius: 1rem;
   background: #14728C;
   opacity: 0.6;
 }
