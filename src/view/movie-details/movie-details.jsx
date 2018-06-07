@@ -21,19 +21,19 @@ export class MovieDetails extends Component {
 	}
 
 	initMovie(id) {
-		let currentMoviee = getItemFromLocalStorage('fullmovies').filter(movie => movie.id === parseInt(id, 10));
-		this.setState({
-			movie: currentMoviee
-		});
-		setItemToLocalStorage('currentmovie', currentMoviee);
+		let currentMovie = getItemFromLocalStorage('fullmovies').filter(movie => movie.id === parseInt(id, 10));
+		this.setState(() => ({
+			movie: currentMovie[0]
+		}));
+		setItemToLocalStorage('currentmovie', currentMovie);
+	}
+
+	componentDidMount() {
+		this.props.fetchSimilarMovies(this.props.match.params.id);
 	}
 
 	componentWillMount() {
 		this.initMovie(this.props.match.params.id);
-	}
-
-	componentDidMount() {
-		this.props.getSimilarMovies(this.props.match.params.id);
 	}
 
 	//refreshing movie info after click on recommended movie
@@ -46,10 +46,13 @@ export class MovieDetails extends Component {
 
 		//filter genres of current movie
 		let genres = this.state.genresFromLS.filter(genre => movie.genre_ids.includes(genre.id));
-		const { similarMovies } = this.props;
+		const { similarMovies, isSidebarOpen } = this.props;
 		return (
 			<div className='mdb-details__view'>
-				<div className='mdb-details__wrapper'>
+				<div className={isSidebarOpen ?
+					'mdb-details__wrapper' :
+					'mdb-details__wrapper mdb-details__wrapper--wider'
+				}>
 					<img
 						className='mdb-details__backdrop'
 						src={movie.backdrop}
@@ -67,10 +70,8 @@ export class MovieDetails extends Component {
 					<p>Genre</p>
 					<GenresList compareGenres={genres.map(genre => genre.name)} />
 					<h3 className='mdb-details__recommended-title'>We also recommended</h3>
-					<Recommendation items={similarMovies}
-					/>
+					<Recommendation items={similarMovies} />
 				</div>
-
 			</div>
 		);
 	}
@@ -80,7 +81,8 @@ const mapStateToProps = (state) => {
 	return {
 		movies: state.moviesReducer.movies,
 		genres: state.genresReducer.genres,
-		similarMovies: state.moviesReducer.similarMovies
+		similarMovies: state.moviesReducer.similarMovies,
+		isSidebarOpen: state.sidebarReducer.isSidebarOpen
 	};
 };
 
@@ -89,7 +91,7 @@ const mapDispatchToProps = (dispatch) => {
 		fetchMovies: () => {
 			dispatch(fetchMovies());
 		},
-		getSimilarMovies: (id) => {
+		fetchSimilarMovies: (id) => {
 			dispatch(fetchSimilarMovies(id));
 		},
 		initializeMyLibrary: () => {
