@@ -30,7 +30,3 @@ export class App extends Component {
     );
   }
 }
-
-
-
-// export const AppComponent = connect(mapStatetoProps, mapDispatchToProps)(App);
