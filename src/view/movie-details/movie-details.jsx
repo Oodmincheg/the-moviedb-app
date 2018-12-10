@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import './movie-details.css';
 import { connect } from 'react-redux';
-import {
-	fetchMovies,
-	fetchSimilarMovies,
-	initializeMyLibrary
-} from '../../store/actions';
+import { fetchSimilarMovies, initializeMyLibrary } from '../../store/actions';
 import { GenresList } from '../../components/genres';
 import { getItemFromLocalStorage, setItemToLocalStorage } from '../../services';
 import { Recommendation } from '../../components/recommendation';
